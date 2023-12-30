@@ -8,15 +8,9 @@ include(../../tool/cmake/compiler/compiler_options.cmake)
 
 # ---
 
-add_executable(${PROJECT_NAME} source/main.cpp)
+add_compile_options(${compiler_options_common_flags})
+add_compile_options($<$<COMPILE_LANGUAGE:C>:${compiler_options_c_flags}>)
+add_compile_options($<$<COMPILE_LANGUAGE:CXX>:${compiler_options_cpp_flags}>)
+add_link_options(${compiler_options_linker_flags})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".axf")
-
-target_compile_options(${PROJECT_NAME} PRIVATE ${compiler_options_common_flags})
-target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:${compiler_options_cpp_flags}>)
-target_link_options(${PROJECT_NAME} PRIVATE ${compiler_options_linker_flags})
-
-# --- install
-
-include(GNUInstallDirs)
-install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME})
+add_subdirectory(source)

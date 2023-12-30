@@ -10,6 +10,7 @@ set(compiler_options_common_flags
 	-Wconversion
 	-Wlogical-op
 	-Wundef
+    -Wunused
 	-Wredundant-decls
 	-Wshadow
 	-Wstrict-overflow=2
@@ -37,6 +38,14 @@ set(compiler_options_common_flags
 	-Wnull-dereference
 	-Wduplicated-cond
 	-Wcast-align=strict
+    # Controlling C dialect
+    -funsigned-char
+    # Code Generation Conventions
+    -fshort-enums -fshort-wchar
+)
+
+set(compiler_options_c_flags
+    -Wmissing-prototypes
 )
 
 set(compiler_options_cpp_flags
@@ -49,12 +58,13 @@ set(compiler_options_cpp_flags
 	-Wuseless-cast
 	-Wzero-as-null-pointer-constant
 	-Wextra-semi
+    -Wmissing-declarations
 	# Disabled Warnings
-	-Wno-c++98-compat
-	-Wno-c++98-compat-pedantic
-	-Wno-exit-time-destructors # causes warnings if you use static values
-	-Wno-global-constructors # causes warnings if you use static values
-	-Wno-covered-switch-default
+	# -Wno-c++98-compat
+	# -Wno-c++98-compat-pedantic
+	# -Wno-exit-time-destructors # causes warnings if you use static values
+	# -Wno-global-constructors # causes warnings if you use static values
+	# -Wno-covered-switch-default
 )
 
 set(compiler_options_linker_flags
