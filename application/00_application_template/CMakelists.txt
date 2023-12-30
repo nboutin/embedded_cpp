@@ -2,9 +2,19 @@ cmake_minimum_required(VERSION 3.15)
 
 project(application_template)
 
+# --- external
+
+include(../../tool/cmake/compiler/compiler_options.cmake)
+
+# ---
+
 add_executable(${PROJECT_NAME} source/main.cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".axf")
+
+target_compile_options(${PROJECT_NAME} PRIVATE ${compiler_options_common_flags})
+target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:${compiler_options_cpp_flags}>)
+target_link_options(${PROJECT_NAME} PRIVATE ${compiler_options_linker_flags})
 
 # --- install
 

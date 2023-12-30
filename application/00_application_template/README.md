@@ -10,3 +10,7 @@
 ## Generate with toolchain
 
     cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=MinSizeRel --toolchain armclang.cmake
+
+## Print compilation command line
+
+    cmake --build build --verbose
