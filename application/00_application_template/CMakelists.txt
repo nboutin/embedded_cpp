@@ -9,8 +9,8 @@ include(../../tool/cmake/compiler/compiler_options.cmake)
 # ---
 
 add_compile_options(${compiler_options_common_flags})
-add_compile_options($<$<COMPILE_LANGUAGE:C>:${compiler_options_c_flags}>)
-add_compile_options($<$<COMPILE_LANGUAGE:CXX>:${compiler_options_cpp_flags}>)
+add_compile_options("$<$<COMPILE_LANGUAGE:C>:${compiler_options_c_flags}>")
+add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:${compiler_options_cpp_flags}>")
 add_link_options(${compiler_options_linker_flags})
 
 add_subdirectory(source)

@@ -1,16 +1,16 @@
 # https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html
 
 set(compiler_options_common_flags
-    # Base
-    -Wall -Wextra -Wpedantic -Werror -Wfatal-errors
-    # Diagnostics
-    -fdiagnostics-show-option -fdiagnostics-plain-output -fdiagnostics-color
-    # Warning
-    -Wfloat-equal
+	# Base
+	-Wall -Wextra -Wpedantic -Werror -Wfatal-errors
+	# Diagnostics
+	-fdiagnostics-show-option -fdiagnostics-plain-output -fdiagnostics-color
+	# Warning
+	-Wfloat-equal
 	-Wconversion
 	-Wlogical-op
 	-Wundef
-    -Wunused
+	-Wunused
 	-Wredundant-decls
 	-Wshadow
 	-Wstrict-overflow=2
