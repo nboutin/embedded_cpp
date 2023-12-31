@@ -1,0 +1,35 @@
+{
+  "version": 4,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "cross_compile",
+      "displayName": "Cross Compilation",
+      "description": "Cross Compilation with Ninja",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "../../tool/cmake/toolchain/arm_gcc_toolchain.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "MinSizeRel",
+        "CMAKE_INSTALL_PREFIX": "../../.local"
+      }
+    },
+    {
+      "name": "host_compile",
+      "displayName": "Host Compilation",
+      "description": "Host Compilation with Ninja",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "MinSizeRel",
+        "CMAKE_INSTALL_PREFIX": "../../.local"
+      }
+    }
+  ],
+  "buildPresets": [],
+  "testPresets": []
+}

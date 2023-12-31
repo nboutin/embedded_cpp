@@ -5,4 +5,4 @@ Monorepo strategy that gather:
 - C++ application
 - CMake script
 - Conan setup
-
+- VS Code setup
