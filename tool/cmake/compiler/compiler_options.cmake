@@ -70,6 +70,7 @@ set(compiler_options_cpp_flags
 set(compiler_options_linker_flags
 	-ffunction-sections # Place each function in its own section (ELF Only)
 	-fdata-sections # Place each data in its own section (ELF Only)
+	-Wl,--gc-sections # Dead code elimination
 	-fdevirtualize # Attempt to convert calls to virtual functions to direct calls
 	-Wl,--fatal-warnings
 	-Wl,--no-warn-rwx-segments # Disable error: has a LOAD segment with RWX permissions
