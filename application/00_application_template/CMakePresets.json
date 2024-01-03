@@ -40,9 +40,16 @@
       "verbose": false
     },
     {
-      "name": "Cross compile",
+      "name": "cross_compile",
+      "displayName": "Cross Compilation",
       "inherits": "base",
       "configurePreset": "cross_compile"
+    },
+    {
+      "name": "host_compile",
+      "displayName": "Host Compilation",
+      "inherits": "base",
+      "configurePreset": "host_compile"
     }
   ],
   "testPresets": []
