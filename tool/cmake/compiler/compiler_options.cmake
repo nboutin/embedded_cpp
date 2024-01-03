@@ -38,10 +38,10 @@ set(compiler_options_common_flags
 	-Wnull-dereference
 	-Wduplicated-cond
 	-Wcast-align=strict
-    # Controlling C dialect
-    -funsigned-char
-    # Code Generation Conventions
-    -fshort-enums -fshort-wchar
+	# Controlling C dialect
+	-funsigned-char
+	# Code Generation Conventions
+	-fshort-enums #-fshort-wchar
 )
 
 set(compiler_options_c_flags
@@ -71,4 +71,6 @@ set(compiler_options_linker_flags
 	-ffunction-sections # Place each function in its own section (ELF Only)
 	-fdata-sections # Place each data in its own section (ELF Only)
 	-fdevirtualize # Attempt to convert calls to virtual functions to direct calls
+	-Wl,--fatal-warnings
+	-Wl,--no-warn-rwx-segments # Disable error: has a LOAD segment with RWX permissions
 )
