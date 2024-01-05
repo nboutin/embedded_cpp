@@ -26,11 +26,32 @@ set(warning_options
 	-Wconversion # Warn for implicit conversions that may alter a value
 	-Wlogical-op # Warn about logical operations being used where bitwise were probably wanted
 	-Wundef # Warn if an undefined identifier is evaluated in an #if directive
+	-Wredundant-decls # Warn if anything is declared more than once in the same scope
+	-Wshadow # Warn whenever a local variable shadows another local variable
+	-Wstrict-overflow=4 # Warn about cases where the compiler optimizes based on the assumption that signed overflow does not occur
+	-Wwrite-strings # Give string constants the type const char[length]
+	-Wpointer-arith # Warn about anything that depends on the "size of" a function type or of void
+	-Wcast-qual # Warn whenever a pointer is cast so as to remove a type qualifier from the target type
+	-Wcast-align=strict # Warn whenever a pointer is cast such that the required alignment of the target is increased
+	-Wswitch-enum # Warn whenever a switch statement has an index of enumerated type
+	-Wsign-conversion # Warn for implicit conversions that may change the sign of an integer value
+	-Wdisabled-optimization # Warn if a requested optimization pass is disabled
+	-Winline # Warn if a function can not be inlined
+	-Winvalid-pch # Warn if a precompiled header (pch) file is found in the search path but can't be used
+	-Wmissing-declarations # Warn if a global function is defined without a previous declaration
+	-Wtrampolines # Warn if trampolines are required to make calls to nested functions work
+	-Wvector-operation-performance # Warn about inefficient use of vector operations
+	-Wshift-overflow=2 # Warn about left shift overflow
+	-Wduplicated-cond # Warn if a if/else chain has duplicated conditions
+	-Walloc-zero # Warn if malloc(0) is called
+	-Wduplicated-branches # Warn if a if/else chain has duplicated branches
+	-Wpadded # Warn if padding is included in a structure
+	-Wswitch-default # Warn whenever a switch statement does not have a default case
+	-Wunused-macros # Warn whenever a macro is defined but not used
 )
 
 set(warning_options_c
 	-Wbad-function-cast
-	-Wmissing-declarations
 	-Wmissing-parameter-type
 	# -Wdeclaration-missing-parameter-type
 	-Wmissing-prototypes
@@ -50,50 +71,32 @@ set(warning_options_cpp
 	# -Wreturn-mismatch # Warn if a function returns a value whose type is incompatible with the function's declared return type
 )
 
+set(c_dialect_options
+	-funsigned-char # Let the type char be unsigned, like unsigned char
+)
+
+set(code_generation_options
+	-fshort-enums # Allocate to an enum type only as many bytes as it needs for the declared range of possible values
+	-fno-common # In C code, controls the placement of uninitialized global variables
+)
+
+set(diagnostic_message_options
+	-fdiagnostics-show-option
+	-fdiagnostics-plain-output
+	-fdiagnostics-color
+)
+
+set(developper_options
+	-fstack-usage
+	-Wstack-usage=256
+)
+
 set(compiler_options_common_flags
 	${warning_options}
-
-	-Wredundant-decls
-	-Wshadow
-	-Wstrict-overflow=2
-	-Wwrite-strings
-	-Wpointer-arith
-	-Wcast-qual
-	-Wmissing-include-dirs
-	-Wcast-align
-	-Wswitch-enum
-	-Wsign-conversion
-	-Wdisabled-optimization
-	-Winline
-	-Winvalid-pch
-	-Wmissing-declarations
-	-Wdouble-promotion
-	-Wshadow
-	-Wtrampolines
-	-Wvector-operation-performance
-	-Wshift-overflow=2
-	-Wnull-dereference
-	-Wduplicated-cond
-	-Wshift-overflow=2
-	-Wnull-dereference
-	-Wduplicated-cond
-	-Wcast-align=strict
-	# Controlling C dialect
-	-funsigned-char
-	# Code Generation Conventions
-	-fshort-enums #-fshort-wchar
-	-Walloc-zero
-	-Wcast-qual
-	-Wduplicated-branches
-	-Wduplicated-cond
-	-Wpadded
-	-Wshadow
-	-Wswitch-default # Warn whenever a switch statement does not have a default case
-	-Wswitch-enum # Warn whenever a switch statement has an index of enumerated type
-	-Wunused-macros # Warn whenever a macro is defined but not used
-	-Wwrite-strings # Give string constants the type const char[length] so that copying the address of one into a non-const char * pointer will get a warning
-	# Diagnostics
-	-fdiagnostics-show-option -fdiagnostics-plain-output -fdiagnostics-color
+	${c_dialect_options}
+	${code_generation_options}
+	${diagnostic_message_options}
+	${developper_options}
 )
 
 set(compiler_options_c_flags
@@ -112,7 +115,6 @@ set(compiler_options_cpp_flags
 	-Wuseless-cast
 	-Wzero-as-null-pointer-constant
 	-Wextra-semi
-    -Wmissing-declarations
 	# Disabled Warnings
 	# -Wno-c++98-compat
 	# -Wno-c++98-compat-pedantic
