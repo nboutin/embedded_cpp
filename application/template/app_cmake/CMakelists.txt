@@ -6,7 +6,7 @@ set(target_name ${PROJECT_NAME})
 
 # --- import tools and configuration
 
-set(tool_dirpath "../../tool")
+set(tool_dirpath "../../../tool")
 include(${tool_dirpath}/cmake/compiler/compiler_options.cmake)
 
 if (CMAKE_CROSSCOMPILING)

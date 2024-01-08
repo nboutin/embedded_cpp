@@ -8,9 +8,9 @@ main(){
 }
 
 build_application_template(){
-  title_1 "Build application_template"
+  title_1 "Build Application CMake template"
 
-  cd application/00_application_template
+  cd application/template/app_cmake
   rm -rf build/
 
   title_2 "Cross compile"

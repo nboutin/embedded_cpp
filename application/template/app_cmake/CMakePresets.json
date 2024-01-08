@@ -11,7 +11,7 @@
       "hidden": true,
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "MinSizeRel",
-        "CMAKE_INSTALL_PREFIX": "../../.local",
+        "CMAKE_INSTALL_PREFIX": "~/.local",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
@@ -22,7 +22,7 @@
       "inherits": "base",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
-      "toolchainFile": "../../tool/cmake/toolchain/arm_gcc_toolchain.cmake"
+      "toolchainFile": "../../../tool/cmake/toolchain/arm_gcc_toolchain.cmake"
     },
     {
       "name": "host_compile",
