@@ -1,0 +1,19 @@
+{% set cpu = "cortex-m4" %}
+{% set float_abi = "hard" %}
+{% set fpu = "fpv4-sp-d16" %}
+
+[settings]
+os=baremetal
+arch=thumbv7
+arch.float_abi={{ float_abi }}
+arch.fpu={{ fpu }}
+arch.processor={{ cpu }}
+build_type=MinSizeRel
+compiler=gcc
+compiler.version=13.2
+compiler.libcxx=libstdc++
+
+[conf]
+{# https://docs.conan.io/2/reference/config_files/global_conf.html?highlight=tools%20build%20cross_building #}
+tools.cmake.cmaketoolchain:generator="Ninja"
+tools.cmake.cmaketoolchain:toolchain_file={{profile_dir}}/cmake_toolchain/arm_gcc_toolchain.cmake

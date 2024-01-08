@@ -1,0 +1,23 @@
+{% set cpu = "cortex-m4" %}
+{% set float_abi = "hard" %}
+{% set fpu = "fpv4-sp-d16" %}
+
+[settings]
+os=baremetal
+arch=thumbv7
+arch.float_abi={{ float_abi }}
+arch.fpu={{ fpu }}
+arch.processor={{ cpu }}
+build_type=MinSizeRel
+compiler=gcc
+compiler.version=13.2
+compiler.libcxx=libstdc++
+
+[tool_requires]
+arm-gnu-toolchain/12.3.1
+
+[conf]
+tools.build:exelinkflags=["--specs=nosys.specs", "--specs=picolibc.specs"]
+
+tools.build.cross_building:can_run=False
+tools.build:compiler_executables={"c": "arm-none-eabi-gcc", "cpp": "arm-none-eabi-g++", "asm": "arm-none-eabi-gcc"}

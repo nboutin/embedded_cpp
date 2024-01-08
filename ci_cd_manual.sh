@@ -4,10 +4,10 @@
 set -e
 
 main(){
-  build_application_template
+  build_template_app_cmake
 }
 
-build_application_template(){
+build_template_app_cmake(){
   title_1 "Build Application CMake template"
 
   cd application/template/app_cmake

@@ -1,6 +1,6 @@
 set(cpu cortex-m4)
-set(fpu fpv4-sp-d16)
 set(float-abi hard)
+set(fpu fpv4-sp-d16)
 
 set(ASM_FLAGS -x assembler-with-cpp)
 add_compile_options(
