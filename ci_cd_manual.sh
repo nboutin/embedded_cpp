@@ -4,7 +4,14 @@
 set -e
 
 main(){
+  install_conan_config
   build_template_app_cmake
+  build_template_app_conan_cmake
+}
+
+install_conan_config(){
+  title_1 "Install Conan config"
+  (cd tool/conan && ./conan_config_install.sh)
 }
 
 build_template_app_cmake(){
@@ -22,6 +29,18 @@ build_template_app_cmake(){
   cmake --preset host_compile
   cmake --build --preset host_compile
   cmake --build --preset host_compile --target install
+
+  cd -
+}
+
+build_template_app_conan_cmake(){
+  title_1 "Build Application Conan CMake template"
+
+  cd application/template/app_conan_cmake
+  rm -rf build/
+
+  title_2 "Cross compile"
+  conan build . -pr stm32f
 
   cd -
 }

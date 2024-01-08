@@ -6,4 +6,3 @@ See tool/conan/README.md about conan config install user_settings and profiles
 
   conan build . -pr stm32f
 
--s build_type=MinSizeRel
