@@ -17,3 +17,6 @@ compiler.libcxx=libstdc++
 {# https://docs.conan.io/2/reference/config_files/global_conf.html?highlight=tools%20build%20cross_building #}
 tools.cmake.cmaketoolchain:generator="Ninja"
 tools.cmake.cmaketoolchain:toolchain_file={{profile_dir}}/cmake_toolchain/arm_gcc_toolchain.cmake
+
+[buildenv]
+CMAKE_EXPORT_COMPILE_COMMANDS=ON

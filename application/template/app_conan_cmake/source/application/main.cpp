@@ -1,9 +1,9 @@
 
 #include "component_c.h"
 
-int main(void)
+auto main() -> int
 {
-    int r = COMP_C_add(1, 2);
-    (void)r;
+    const int res = COMP_C_add(1, 2);
+    (void)res;
     return 0;
 }

@@ -7,6 +7,7 @@ main(){
   install_conan_config
   build_template_app_cmake
   build_template_app_conan_cmake
+  run_clang_tidy
 }
 
 install_conan_config(){
@@ -41,6 +42,21 @@ build_template_app_conan_cmake(){
 
   title_2 "Cross compile"
   conan build . -pr stm32f
+
+  cd -
+}
+
+run_clang_tidy(){
+  title_1 "Run Clang Tidy"
+
+  cd application/template/app_conan_cmake
+
+  # Pre-condition:
+  #   - LLVM/bin must be in PATH
+  #   - python3 be in path (on windows use: mklink python3.exe python.exe)
+  # -p: tells clang-tidy to use the compile commands from the specified build directory
+  # tee: output clang-tidy to file and stdout
+  run-clang-tidy -p build/MinSizeRel | tee build/MinSizeRel/clang_tidy_output.log
 
   cd -
 }

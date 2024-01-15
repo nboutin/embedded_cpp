@@ -4,6 +4,6 @@
         "conan": {}
     },
     "include": [
-        "D:\\perso\\dev\\embedded_cpp\\application\\template\\app_conan_cmake\\build\\MinSizeRel\\generators\\CMakePresets.json"
+        "D:\\00_dev\\embedded_cpp\\application\\template\\app_conan_cmake\\build\\MinSizeRel\\generators\\CMakePresets.json"
     ]
 }

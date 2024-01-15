@@ -30,27 +30,24 @@
 #include <sys/time.h>
 #include <sys/times.h>
 
-
 /* Variables */
-extern int __io_putchar(int ch) __attribute__((weak));
-extern int __io_getchar(void) __attribute__((weak));
+extern int __io_putchar(int ch) __attribute__((weak)); // NOLINT
+extern int __io_getchar(void) __attribute__((weak));   // NOLINT
 
-
-char *__env[1] = { 0 };
-char **environ = __env;
-
+char *__env[1] = {0};   // NOLINT
+char **environ = __env; // NOLINT
 
 /* Functions */
 void initialise_monitor_handles(void)
 {
 }
 
-int _getpid(void)
+int _getpid(void) // NOLINT
 {
   return 1;
 }
 
-int _kill(int pid, int sig)
+int _kill(int pid, int sig) // NOLINT
 {
   (void)pid;
   (void)sig;
@@ -58,16 +55,18 @@ int _kill(int pid, int sig)
   return -1;
 }
 
-void _exit (int status)
+void _exit(int status) // NOLINT
 {
   _kill(status, -1);
-  while (1) {}    /* Make sure we hang here */
+  while (1)
+  {
+  } /* Make sure we hang here */
 }
 
-__attribute__((weak)) int _read(int file, char *ptr, int len)
+__attribute__((weak)) int _read(int file, char *ptr, int len) // NOLINT
 {
   (void)file;
-  int DataIdx;
+  int DataIdx = 0;
 
   for (DataIdx = 0; DataIdx < len; DataIdx++)
   {
@@ -77,10 +76,10 @@ __attribute__((weak)) int _read(int file, char *ptr, int len)
   return len;
 }
 
-__attribute__((weak)) int _write(int file, char *ptr, int len)
+__attribute__((weak)) int _write(int file, char *ptr, int len) // NOLINT
 {
   (void)file;
-  int DataIdx;
+  int DataIdx = 0;
 
   for (DataIdx = 0; DataIdx < len; DataIdx++)
   {
@@ -89,27 +88,26 @@ __attribute__((weak)) int _write(int file, char *ptr, int len)
   return len;
 }
 
-int _close(int file)
+int _close(int file) // NOLINT
 {
   (void)file;
   return -1;
 }
 
-
-int _fstat(int file, struct stat *st)
+int _fstat(int file, struct stat *file_stat) // NOLINT
 {
   (void)file;
-  st->st_mode = S_IFCHR;
+  file_stat->st_mode = S_IFCHR;
   return 0;
 }
 
-int _isatty(int file)
+int _isatty(int file) // NOLINT
 {
   (void)file;
   return 1;
 }
 
-int _lseek(int file, int ptr, int dir)
+int _lseek(int file, int ptr, int dir) // NOLINT
 {
   (void)file;
   (void)ptr;
@@ -117,7 +115,7 @@ int _lseek(int file, int ptr, int dir)
   return 0;
 }
 
-int _open(char *path, int flags, ...)
+int _open(const char *path, int flags, ...) // NOLINT
 {
   (void)path;
   (void)flags;
@@ -125,34 +123,34 @@ int _open(char *path, int flags, ...)
   return -1;
 }
 
-int _wait(int *status)
+int _wait(const int *status) // NOLINT
 {
   (void)status;
   errno = ECHILD;
   return -1;
 }
 
-int _unlink(char *name)
+int _unlink(const char *name) // NOLINT
 {
   (void)name;
   errno = ENOENT;
   return -1;
 }
 
-int _times(struct tms *buf)
+int _times(struct tms *buf) // NOLINT
 {
   (void)buf;
   return -1;
 }
 
-int _stat(char *file, struct stat *st)
+int _stat(const char *file, struct stat *st) // NOLINT
 {
   (void)file;
   st->st_mode = S_IFCHR;
   return 0;
 }
 
-int _link(char *old, char *new)
+int _link(const char *old, const char *new) // NOLINT
 {
   (void)old;
   (void)new;
@@ -160,13 +158,13 @@ int _link(char *old, char *new)
   return -1;
 }
 
-int _fork(void)
+int _fork(void) // NOLINT
 {
   errno = EAGAIN;
   return -1;
 }
 
-int _execve(char *name, char **argv, char **env)
+int _execve(const char *name, char **argv, char **env) // NOLINT
 {
   (void)name;
   (void)argv;
