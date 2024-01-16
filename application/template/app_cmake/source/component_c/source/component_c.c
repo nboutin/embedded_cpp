@@ -1,7 +1,7 @@
 
 #include "component_c.h"
 
-int COMP_C_add(int a, int b)
+int COMP_C_add(int val_a, int val_b)
 {
-    return a + b;
+    return val_a + val_b;
 }

@@ -1,0 +1,1 @@
+set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE iwyu)

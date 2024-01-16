@@ -82,7 +82,7 @@ set(code_generation_options
 
 set(diagnostic_message_options
 	-fdiagnostics-show-option
-	-fdiagnostics-plain-output
+	# -fdiagnostics-plain-output # Disabled: conflict with clang-tidy
 	-fdiagnostics-color
 )
 

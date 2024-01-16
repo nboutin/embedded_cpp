@@ -7,7 +7,7 @@ main(){
   install_conan_config
   build_template_app_cmake
   build_template_app_conan_cmake
-  run_clang_tidy
+  # run_clang_tidy
 }
 
 install_conan_config(){

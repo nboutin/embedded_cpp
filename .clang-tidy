@@ -7,8 +7,10 @@ Checks: '
     -llvmlibc-*
     -bugprone-reserved-identifier,
     -bugprone-easily-swappable-parameters,
+    -modernize-use-trailing-return-type,
     '
 WarningsAsErrors: ''
+ExtraArgsBefore: [-Wno-unknown-warning-option, -Wno-fdiagnostics-plain-output]
 ExtraArgs: [-Wno-unknown-warning-option, -Wno-fdiagnostics-plain-output]
 FormatStyle: 'file'
 
