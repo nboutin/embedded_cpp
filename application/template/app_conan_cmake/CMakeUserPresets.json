@@ -1,9 +1,0 @@
-{
-    "version": 4,
-    "vendor": {
-        "conan": {}
-    },
-    "include": [
-        "D:\\00_dev\\embedded_cpp\\application\\template\\app_conan_cmake\\build\\MinSizeRel\\generators\\CMakePresets.json"
-    ]
-}
