@@ -8,6 +8,7 @@ set(target_name ${PROJECT_NAME})
 
 set(tool_dirpath "../../../tool")
 include(${tool_dirpath}/cmake/compiler/compiler_options.cmake)
+include(${tool_dirpath}/cmake/cppcheck.cmake)
 
 if (CMAKE_CROSSCOMPILING)
   include(${tool_dirpath}/cmake/toolchain/stm32f4.cmake)

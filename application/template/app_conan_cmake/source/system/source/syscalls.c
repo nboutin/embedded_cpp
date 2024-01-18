@@ -76,7 +76,7 @@ __attribute__((weak)) int _read(int file, char *ptr, int len) // NOLINT
   return len;
 }
 
-__attribute__((weak)) int _write(int file, char *ptr, int len) // NOLINT
+__attribute__((weak)) int _write(int file, const char *ptr, int len) // NOLINT
 {
   (void)file;
   int DataIdx = 0;
