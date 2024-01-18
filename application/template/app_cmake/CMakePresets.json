@@ -16,18 +16,18 @@
       }
     },
     {
-      "name": "cross_compile",
-      "displayName": "Cross Compilation",
-      "description": "Cross Compilation with Ninja",
+      "name": "arm_gcc",
+      "displayName": "ARM GCC",
+      "description": "ARM GCC with Ninja",
       "inherits": "base",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "toolchainFile": "../../../tool/cmake/toolchain/arm_gcc_toolchain.cmake"
     },
     {
-      "name": "host_compile",
-      "displayName": "Host Compilation",
-      "description": "Host Compilation with Ninja",
+      "name": "host_gcc",
+      "displayName": "Host GCC",
+      "description": "Host GCC with Ninja",
       "inherits": "base",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}"
@@ -40,16 +40,16 @@
       "verbose": false
     },
     {
-      "name": "cross_compile",
-      "displayName": "Cross Compilation",
+      "name": "arm_gcc",
+      "displayName": "ARM GCC",
       "inherits": "base",
-      "configurePreset": "cross_compile"
+      "configurePreset": "arm_gcc"
     },
     {
-      "name": "host_compile",
-      "displayName": "Host Compilation",
+      "name": "host_gcc",
+      "displayName": "Host GCC",
       "inherits": "base",
-      "configurePreset": "host_compile"
+      "configurePreset": "host_gcc"
     }
   ],
   "testPresets": []

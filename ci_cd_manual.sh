@@ -21,15 +21,15 @@ build_template_app_cmake(){
   cd application/template/app_cmake
   rm -rf build/
 
-  title_2 "Cross compile"
-  cmake --preset cross_compile
-  cmake --build --preset cross_compile
-  cmake --build --preset cross_compile --target install
+  title_2 "ARM GCC"
+  cmake --preset arm_gcc
+  cmake --build --preset arm_gcc
+  cmake --build --preset arm_gcc  --target install
 
-  title_2 "Host compile"
-  cmake --preset host_compile
-  cmake --build --preset host_compile
-  cmake --build --preset host_compile --target install
+  title_2 "Host GCC"
+  cmake --preset host_gcc
+  cmake --build --preset host_gcc
+  cmake --build --preset host_gcc --target install
 
   cd -
 }
