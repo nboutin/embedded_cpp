@@ -30,7 +30,23 @@
       "description": "Host GCC with Ninja",
       "inherits": "base",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/${presetName}"
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
+      }
+    },
+    {
+      "name": "host_clang",
+      "displayName": "Host Clang",
+      "description": "Host CLang with Ninja",
+      "inherits": "base",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
     }
   ],
   "buildPresets": [
@@ -50,6 +66,12 @@
       "displayName": "Host GCC",
       "inherits": "base",
       "configurePreset": "host_gcc"
+    },
+    {
+      "name": "host_clang",
+      "displayName": "Host Clang",
+      "inherits": "base",
+      "configurePreset": "host_clang"
     }
   ],
   "testPresets": []

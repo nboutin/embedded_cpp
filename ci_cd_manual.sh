@@ -31,6 +31,11 @@ build_template_app_cmake(){
   cmake --build --preset host_gcc
   cmake --build --preset host_gcc --target install
 
+  title_2 "Host Clang"
+  cmake --preset host_clang
+  cmake --build --preset host_clang
+  cmake --build --preset host_clang --target install
+
   cd -
 }
 

@@ -6,6 +6,8 @@
 - Integrate clang-format to CMake
 - Enable misra check with cppcheck
 - Use specific cmake preset for code lint
+- Use CTest
+- Use CDash
 
 # Nice to have
 

@@ -4,6 +4,8 @@ project(application_template
   LANGUAGES CXX C ASM)
 set(target_name ${PROJECT_NAME})
 
+message(STATUS "CMAKE_CXX_COMPILER_ID: ${CMAKE_CXX_COMPILER_ID}")
+
 # --- import tools and configuration
 
 set(tool_dirpath "../../../tool")
