@@ -1,0 +1,65 @@
+{
+  "version": 4,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "MinSizeRel",
+        "CMAKE_INSTALL_PREFIX": "~/.local",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      }
+    },
+    {
+      "name": "host_gcc",
+      "displayName": "Host GCC",
+      "description": "Host GCC with Ninja",
+      "inherits": "base",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
+      }
+    },
+    {
+      "name": "host_clang",
+      "displayName": "Host Clang",
+      "description": "Host CLang with Ninja",
+      "inherits": "base",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_C_FLAGS": "-target x86_64-pc-windows-gnu",
+        "CMAKE_CXX_FLAGS": "-target x86_64-pc-windows-gnu"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "verbose": false
+    },
+    {
+      "name": "host_gcc",
+      "displayName": "Host GCC",
+      "inherits": "base",
+      "configurePreset": "host_gcc"
+    },
+    {
+      "name": "host_clang",
+      "displayName": "Host Clang",
+      "inherits": "base",
+      "configurePreset": "host_clang"
+    }
+  ],
+  "testPresets": []
+}
