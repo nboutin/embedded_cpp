@@ -1,4 +1,24 @@
 
+set(warning_options_c_gnu
+	-Wmissing-parameter-type
+	-Wold-style-declaration
+	-Wtraditional-conversion
+)
+
+set(warning_options_c
+	"$<$<COMPILE_LANG_AND_ID:C,GNU>:${warning_options_c_gnu}>"
+	-Wbad-function-cast
+	-Wmissing-prototypes
+	-Wnested-externs
+	-Wold-style-definition
+	-Wstrict-prototypes # Warn if a function is declared or defined without specifying the argument types
+	-Wpointer-sign
+	# -Wdeclaration-missing-parameter-type
+	# -Wmissing-variable-declarations
+	# -Wtraditional
+	# -Wdeclaration-after-statement
+)
+
 set(warning_options_gnu
 	-Wformat-overflow=2 # Warn about printf/scanf/strftime/strfmon format string overflow
 	-Wformat-signedness
@@ -17,7 +37,33 @@ set(warning_options_clang
 	-Weverything
 )
 
+set(compiler_options_cpp_flags_gnu
+  -Wnoexcept
+  -Wstrict-null-sentinel
+  -Wuseless-cast
+)
+
+set(warning_options_cpp
+  "$<$<COMPILE_LANG_AND_ID:CXX,GNU>:${compiler_options_cpp_flags_gnu}>"
+  -Wold-style-cast
+  -Wnon-virtual-dtor
+  -Wctor-dtor-privacy
+  -Woverloaded-virtual
+  -Wzero-as-null-pointer-constant
+  -Wextra-semi
+  # -Wnrvo # Warn if return value optimization is not performed
+  # -Wreturn-mismatch # Warn if a function returns a value whose type is incompatible with the function's declared return type
+  # Disabled Warnings
+  # -Wno-c++98-compat
+  # -Wno-c++98-compat-pedantic
+  # -Wno-exit-time-destructors # causes warnings if you use static values
+  # -Wno-global-constructors # causes warnings if you use static values
+  # -Wno-covered-switch-default
+)
+
 set(warning_options
+  "$<$<COMPILE_LANGUAGE:C>:${warning_options_c}>"
+  "$<$<COMPILE_LANGUAGE:CXX>:${warning_options_cpp}>"
 	"$<$<COMPILE_LANG_AND_ID:C,GNU>:${warning_options_gnu}>"
 	"$<$<COMPILE_LANG_AND_ID:CXX,GNU>:${warning_options_gnu}>"
 	"$<$<COMPILE_LANG_AND_ID:C,Clang>:${warning_options_clang}>"
@@ -57,51 +103,6 @@ set(warning_options
 	-Wpadded # Warn if padding is included in a structure
 	-Wswitch-default # Warn whenever a switch statement does not have a default case
 	-Wunused-macros # Warn whenever a macro is defined but not used
-)
-
-set(warning_options_c_gnu
-	-Wmissing-parameter-type
-	-Wold-style-declaration
-	-Wtraditional-conversion
-)
-
-set(warning_options_c
-	"$<$<COMPILE_LANG_AND_ID:C,GNU>:${warning_options_c_gnu}>"
-	"$<$<COMPILE_LANG_AND_ID:CXX,GNU>:${warning_options_c_gnu}>"
-	-Wbad-function-cast
-	-Wmissing-prototypes
-	-Wnested-externs
-	-Wold-style-definition
-	-Wstrict-prototypes # Warn if a function is declared or defined without specifying the argument types
-	-Wpointer-sign
-	# -Wdeclaration-missing-parameter-type
-	# -Wmissing-variable-declarations
-	# -Wtraditional
-	# -Wdeclaration-after-statement
-)
-
-set(compiler_options_cpp_flags_gnu
-  -Wnoexcept
-  -Wstrict-null-sentinel
-  -Wuseless-cast
-)
-
-set(warning_options_cpp
-  "$<$<COMPILE_LANG_AND_ID:CXX,GNU>:${compiler_options_cpp_flags_gnu}>"
-  -Wold-style-cast
-  -Wnon-virtual-dtor
-  -Wctor-dtor-privacy
-  -Woverloaded-virtual
-  -Wzero-as-null-pointer-constant
-  -Wextra-semi
-  # -Wnrvo # Warn if return value optimization is not performed
-  # -Wreturn-mismatch # Warn if a function returns a value whose type is incompatible with the function's declared return type
-  # Disabled Warnings
-  # -Wno-c++98-compat
-  # -Wno-c++98-compat-pedantic
-  # -Wno-exit-time-destructors # causes warnings if you use static values
-  # -Wno-global-constructors # causes warnings if you use static values
-  # -Wno-covered-switch-default
 )
 
 set(c_dialect_options
