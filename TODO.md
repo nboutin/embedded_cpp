@@ -1,7 +1,6 @@
 # TODO
 
-- Add preset with clang compiler
-- Add -Weverything for clang compiler
+- Use #include from other target using #include "component/header.h" format
 - CMake formatter
 - Integrate clang-format to CMake
 - Enable misra check with cppcheck
