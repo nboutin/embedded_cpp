@@ -22,7 +22,6 @@ FormatStyle: 'file'
 # https://github.com/Kitware/CMake/blob/master/.clang-tidy
 HeaderFilterRegex: '.*\.(h|hxx|cxx)$'
 AnalyzeTemporaryDtors: false
-FormatStyle:     none
 User:            martin
 CheckOptions:
     - { key:  bugprone-assert-side-effect.AssertMacros,                           value:  assert          }

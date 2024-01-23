@@ -45,7 +45,9 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++"
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_C_FLAGS": "-target x86_64-pc-windows-gnu",
+        "CMAKE_CXX_FLAGS": "-target x86_64-pc-windows-gnu"
       }
     }
   ],

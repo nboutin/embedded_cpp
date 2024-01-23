@@ -20,8 +20,8 @@ set(warning_options_clang
 
 # https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
 set(warning_options
-	$<$<COMPILE_LANG_AND_ID:C,GNU>:${warning_options_gnu}>
-	$<$<COMPILE_LANG_AND_ID:CXX,GNU>:${warning_options_gnu}>
+	"$<$<COMPILE_LANG_AND_ID:C,GNU>:${warning_options_gnu}>"
+	"$<$<COMPILE_LANG_AND_ID:CXX,GNU>:${warning_options_gnu}>"
 	"$<$<COMPILE_LANG_AND_ID:C,Clang>:${warning_options_clang}>"
 	"$<$<COMPILE_LANG_AND_ID:CXX,Clang>:${warning_options_clang}>"
 	# -fmax-errors=1 # Limits the maximum number of error messages (-Wfatal-errors takes precedence)
