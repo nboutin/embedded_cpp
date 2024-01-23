@@ -23,6 +23,7 @@ endif()
 # ---
 
 add_compile_options("${compiler_options_flags}")
+add_compile_options("${compiler_options_runtime_flags}")
 add_link_options("${compiler_options_linker_flags}")
 
 if (CMAKE_CROSSCOMPILING)

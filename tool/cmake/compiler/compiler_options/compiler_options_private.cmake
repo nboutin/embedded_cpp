@@ -103,6 +103,9 @@ set(warning_options
 	-Wpadded # Warn if padding is included in a structure
 	-Wswitch-default # Warn whenever a switch statement does not have a default case
 	-Wunused-macros # Warn whenever a macro is defined but not used
+	-Wimplicit-fallthrough # Warn whenever a switch statement does not have a default case
+	-U_FORTIFY_SOURCE
+	-fstrict-flex-arrays=3 # Warn if a flexible array member is used when its size is unknown or zero
 )
 
 set(c_dialect_options
@@ -116,8 +119,8 @@ set(code_generation_options
 
 set(diagnostic_message_options
 	-fdiagnostics-show-option
-	# -fdiagnostics-plain-output # Disabled: conflict with clang-tidy
 	-fdiagnostics-color
+	# -fdiagnostics-plain-output # Disabled: conflict with clang-tidy
 )
 
 set(developper_options_gnu
@@ -130,6 +133,34 @@ set(developper_options
 	-fstack-usage
 )
 
+set(optimization_options
+	-fno-delete-null-pointer-checks
+	-ftrivial-auto-var-init=zero
+	-fno-strict-aliasing
+)
+
+set(instrumentation_options
+	# -fcf-protection=full # Enable control flow protection
+)
+
+set(compiler_options_runtime_gnu
+	-fstack-clash-protection
+)
+
+set(compiler_options_runtime
+	"$<$<COMPILE_LANG_AND_ID:C,GNU>:${compiler_options_runtime_gnu}>"
+	"$<$<COMPILE_LANG_AND_ID:CXX,GNU>:${compiler_options_runtime_gnu}>"
+	-D_FORTIFY_SOURCE=3
+	-D_GLIBCXX_ASSERTIONS
+	-D_LIBCPP_ASSERT
+	-fstack-protector-strong
+	-fstack-protector-all
+)
+
+set(compiler_options_arm
+	-mbranch-protection=standard # supported only on armv8-m.main or later.
+)
+
 set(compiler_options_linker
 	-ffunction-sections # Place each function in its own section (ELF Only)
 	-fdata-sections # Place each data in its own section (ELF Only)
@@ -137,4 +168,6 @@ set(compiler_options_linker
 	-fdevirtualize # Attempt to convert calls to virtual functions to direct calls
 	-Wl,--fatal-warnings
 	-Wl,--no-warn-rwx-segments # Disable error: has a LOAD segment with RWX permissions
+	# -Wl,-z,nodlopen -Wl,-z,noexecstack
+	# -Wl,-z,relro -Wl,-z,now
 )
