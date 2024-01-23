@@ -143,22 +143,32 @@ set(instrumentation_options
 	# -fcf-protection=full # Enable control flow protection
 )
 
-set(compiler_options_runtime_gnu
-	-fstack-clash-protection
-)
-
 set(compiler_options_runtime
-	"$<$<COMPILE_LANG_AND_ID:C,GNU>:${compiler_options_runtime_gnu}>"
-	"$<$<COMPILE_LANG_AND_ID:CXX,GNU>:${compiler_options_runtime_gnu}>"
 	-D_FORTIFY_SOURCE=3
 	-D_GLIBCXX_ASSERTIONS
-	-D_LIBCPP_ASSERT
+	-D_LIBCPP_ENABLE_HARDENED_MODE
 	-fstack-protector-strong
 	-fstack-protector-all
 )
 
 set(compiler_options_arm
 	-mbranch-protection=standard # supported only on armv8-m.main or later.
+)
+
+set(compiler_options_sanitizer
+	-fsanitize=address
+	-fsanitize=thread
+	-fsanitize=leak
+	-fsanitize=undefined
+	-fsanitize=safe-stack
+
+	-fno-omit-frame-pointer
+	-fno-optimize-sibling-calls
+	-fno-common
+	-DASAN_OPTIONS
+	-DTSAN_OPTIONS
+	-DLSAN_OPTIONS
+	-DUBSAN_OPTIONS
 )
 
 set(compiler_options_linker

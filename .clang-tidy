@@ -11,7 +11,7 @@ Checks: '
     '
 WarningsAsErrors: ''
 ExtraArgsBefore: [-Wno-unknown-warning-option, -Wno-fdiagnostics-plain-output]
-ExtraArgs: [-Wno-unknown-warning-option, -Wno-fdiagnostics-plain-output]
+ExtraArgs: []
 FormatStyle: 'file'
 
 # From the docs: "Output warnings from headers matching this filter"

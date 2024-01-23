@@ -24,3 +24,7 @@ set(compiler_options_arm_flags ${compiler_options_arm})
 
 # Use: add_link_options("${compiler_options_linker_flags}")
 set(compiler_options_linker_flags ${compiler_options_linker})
+
+# Use: add_compile_options("${compiler_options_sanitizer_flags}")
+# Do not use for production code, only for testing
+set(compiler_options_sanitizer_flags ${compiler_options_sanitizer})
