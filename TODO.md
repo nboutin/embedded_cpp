@@ -1,6 +1,5 @@
 # TODO
 
-- Use specific cmake preset for code lint
 - Compile app_conan_cmake with GNU and Clang compiler
 - Use #include from other target using #include "component/header.h" format
 - Integrate clang-format to CMake
@@ -12,6 +11,7 @@
 - Use CDash
 - Enable misra check with cppcheck
 - Test gitattribute and LFS
+- Check https://github.com/TheLartians/ModernCppStarter
 
 # Nice to have
 
