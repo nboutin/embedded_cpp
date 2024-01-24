@@ -12,6 +12,7 @@
 - Enable misra check with cppcheck
 - Test gitattribute and LFS
 - Check https://github.com/TheLartians/ModernCppStarter
+- Use ccache https://crascit.com/2016/04/09/using-ccache-with-cmake/, https://github.com/TheLartians/Ccache.cmake
 
 # Nice to have
 

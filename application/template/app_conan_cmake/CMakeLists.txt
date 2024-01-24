@@ -8,6 +8,7 @@ set(target_name ${PROJECT_NAME})
 option(CODE_LINTER "Enable code linter tools(cppcheck, clang-tidy, ...)" OFF)
 
 set(tool_dirpath "../../../tool")
+include(${tool_dirpath}/cmake/in_source_build_guard.cmake)
 include(${tool_dirpath}/cmake/compiler/compiler_options.cmake)
 
 if(CMAKE_CROSSCOMPILING)
