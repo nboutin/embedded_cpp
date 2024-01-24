@@ -10,9 +10,8 @@ include(${tool_dirpath}/cmake/compiler/compiler_options.cmake)
 include(${tool_dirpath}/cmake/cppcheck.cmake)
 
 if(CMAKE_CROSSCOMPILING)
-  include(${tool_dirpath}/cmake/toolchain/stm32f4.cmake)
   include(${tool_dirpath}/cmake/compiler/binary_size.cmake)
-  include(${tool_dirpath}/cmake/compiler/map_file.cmake)
+  include(${tool_dirpath}/cmake/compiler/map_file.cmake) # needs target_name to be defined
 else()
   include(${tool_dirpath}/cmake/clang_tidy.cmake)
 endif()

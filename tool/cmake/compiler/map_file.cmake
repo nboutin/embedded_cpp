@@ -1,1 +1,1 @@
-string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,-Map=${target_name}.map")
+add_link_options(-Wl,-Map=${target_name}.map)

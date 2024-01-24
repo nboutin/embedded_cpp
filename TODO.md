@@ -1,7 +1,7 @@
 # TODO
 
-- CMake formatter
 - Use specific cmake preset for code lint
+- Compile app_conan_cmake with GNU and Clang compiler
 - Use #include from other target using #include "component/header.h" format
 - Integrate clang-format to CMake
 - Add GoogleTest GoogleMock
