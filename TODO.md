@@ -7,6 +7,7 @@
 - Add GoogleTest GoogleMock
 - Use sanitizer compiler options for Tests
 - Experiment with Conan
+- Test pre-commit https://pre-commit.com/
 - Use CTest
 - Use CDash
 - Enable misra check with cppcheck

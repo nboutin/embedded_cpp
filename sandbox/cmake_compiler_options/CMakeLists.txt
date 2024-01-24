@@ -15,9 +15,8 @@ add_compile_options("${compiler_options_common_flags}") # GOOD
 # add_compile_options("$<$<COMPILE_LANG_AND_ID:CXX,GNU>:-Wformat-overflow=2;-Wformat-signedness>") # GOOD
 # add_compile_options("$<$<COMPILE_LANG_AND_ID:CXX,GNU>:-Wformat-overflow=2$<SEMICOLON>-Wformat-signedness>") # GOOD
 
-
 get_directory_property(COMPILE_OPTIONS DIRECTORY ${CMAKE_SOURCE_DIR} COMPILE_OPTIONS)
-MESSAGE("COMPILE OPTIONS: ${COMPILE_OPTIONS}")
+message("COMPILE OPTIONS: ${COMPILE_OPTIONS}")
 message(STATUS "CMAKE_CXX_COMPILER_ID: ${CMAKE_CXX_COMPILER_ID}")
 
 add_executable(cmake_compiler_options_sandbox source/main.cpp)

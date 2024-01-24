@@ -1,0 +1,153 @@
+# https://cmake-format.readthedocs.io/en/latest/format-usage.html
+parse:
+  additional_commands:
+    foo:
+      flags:
+      - BAR
+      - BAZ
+      kwargs:
+        HEADERS: '*'
+        SOURCES: '*'
+        DEPENDS: '*'
+  override_spec: {}
+  vartags: []
+  proptags: []
+format:
+  disable: false
+  line_width: 120
+  tab_size: 2
+  use_tabchars: false
+  max_subgroups_hwrap: 2
+  max_pargs_hwrap: 3
+  max_rows_cmdline: 2
+  separate_ctrl_name_with_space: false
+  separate_fn_name_with_space: false
+  dangle_parens: false
+  dangle_align: prefix
+  min_prefix_chars: 4
+  max_prefix_chars: 10
+  max_lines_hwrap: 2
+  line_ending: unix
+  command_case: canonical
+  keyword_case: upper
+  always_wrap: []
+  enable_sort: true
+  autosort: true
+  require_valid_layout: false
+  layout_passes: {}
+markup:
+  _help_bullet_char:
+  - What character to use for bulleted lists
+  bullet_char: '*'
+  _help_enum_char:
+  - What character to use as punctuation after numerals in an
+  - enumerated list
+  enum_char: .
+  _help_first_comment_is_literal:
+  - If comment markup is enabled, don't reflow the first comment
+  - block in each listfile. Use this to preserve formatting of
+  - your copyright/license statements.
+  first_comment_is_literal: false
+  _help_literal_comment_pattern:
+  - If comment markup is enabled, don't reflow any comment block
+  - which matches this (regex) pattern. Default is `None`
+  - (disabled).
+  literal_comment_pattern: null
+  _help_fence_pattern:
+  - Regular expression to match preformat fences in comments
+  - default= ``r'^\s*([`~]{3}[`~]*)(.*)$'``
+  fence_pattern: ^\s*([`~]{3}[`~]*)(.*)$
+  _help_ruler_pattern:
+  - Regular expression to match rulers in comments default=
+  - '``r''^\s*[^\w\s]{3}.*[^\w\s]{3}$''``'
+  ruler_pattern: ^\s*[^\w\s]{3}.*[^\w\s]{3}$
+  _help_explicit_trailing_pattern:
+  - If a comment line matches starts with this pattern then it
+  - is explicitly a trailing comment for the preceeding
+  - argument. Default is '#<'
+  explicit_trailing_pattern: '#<'
+  _help_hashruler_min_length:
+  - If a comment line starts with at least this many consecutive
+  - hash characters, then don't lstrip() them off. This allows
+  - for lazy hash rulers where the first hash char is not
+  - separated by space
+  hashruler_min_length: 10
+  _help_canonicalize_hashrulers:
+  - If true, then insert a space between the first hash char and
+  - remaining hash chars in a hash ruler, and normalize its
+  - length to fill the column
+  canonicalize_hashrulers: true
+  _help_enable_markup:
+  - enable comment markup parsing and reflow
+  enable_markup: true
+lint:
+  _help_disabled_codes:
+  - a list of lint codes to disable
+  disabled_codes: []
+  _help_function_pattern:
+  - regular expression pattern describing valid function names
+  function_pattern: '[0-9a-z_]+'
+  _help_macro_pattern:
+  - regular expression pattern describing valid macro names
+  macro_pattern: '[0-9A-Z_]+'
+  _help_global_var_pattern:
+  - regular expression pattern describing valid names for
+  - variables with global (cache) scope
+  global_var_pattern: '[A-Z][0-9A-Z_]+'
+  _help_internal_var_pattern:
+  - regular expression pattern describing valid names for
+  - variables with global scope (but internal semantic)
+  internal_var_pattern: _[A-Z][0-9A-Z_]+
+  _help_local_var_pattern:
+  - regular expression pattern describing valid names for
+  - variables with local scope
+  local_var_pattern: '[a-z][a-z0-9_]+'
+  _help_private_var_pattern:
+  - regular expression pattern describing valid names for
+  - privatedirectory variables
+  private_var_pattern: _[0-9a-z_]+
+  _help_public_var_pattern:
+  - regular expression pattern describing valid names for public
+  - directory variables
+  public_var_pattern: '[A-Z][0-9A-Z_]+'
+  _help_argument_var_pattern:
+  - regular expression pattern describing valid names for
+  - function/macro arguments and loop variables.
+  argument_var_pattern: '[a-z][a-z0-9_]+'
+  _help_keyword_pattern:
+  - regular expression pattern describing valid names for
+  - keywords used in functions or macros
+  keyword_pattern: '[A-Z][0-9A-Z_]+'
+  _help_max_conditionals_custom_parser:
+  - In the heuristic for C0201, how many conditionals to match
+  - within a loop in before considering the loop a parser.
+  max_conditionals_custom_parser: 2
+  _help_min_statement_spacing:
+  - Require at least this many newlines between statements
+  min_statement_spacing: 1
+  _help_max_statement_spacing:
+  - Require no more than this many newlines between statements
+  max_statement_spacing: 2
+  max_returns: 6
+  max_branches: 12
+  max_arguments: 5
+  max_localvars: 15
+  max_statements: 50
+encode:
+  _help_emit_byteorder_mark:
+  - If true, emit the unicode byte-order mark (BOM) at the start
+  - of the file
+  emit_byteorder_mark: false
+  _help_input_encoding:
+  - Specify the encoding of the input file. Defaults to utf-8
+  input_encoding: utf-8
+  _help_output_encoding:
+  - Specify the encoding of the output file. Defaults to utf-8.
+  - Note that cmake only claims to support utf-8 so be careful
+  - when using anything else
+  output_encoding: utf-8
+misc:
+  _help_per_command:
+  - A dictionary containing any per-command configuration
+  - overrides. Currently only `command_case` is supported.
+  per_command: {}
