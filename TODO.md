@@ -11,6 +11,7 @@
 - Use CTest
 - Use CDash
 - Enable misra check with cppcheck
+- Test gitattribute and LFS
 
 # Nice to have
 

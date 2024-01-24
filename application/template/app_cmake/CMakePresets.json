@@ -49,6 +49,19 @@
         "CMAKE_C_FLAGS": "-target x86_64-pc-windows-gnu",
         "CMAKE_CXX_FLAGS": "-target x86_64-pc-windows-gnu"
       }
+    },
+    {
+      "name": "code_linter",
+      "displayName": "Code Linter",
+      "inherits": "base",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CODE_LINTER": "ON"
+      }
     }
   ],
   "buildPresets": [
@@ -74,6 +87,12 @@
       "displayName": "Host Clang",
       "inherits": "base",
       "configurePreset": "host_clang"
+    },
+    {
+      "name": "code_linter",
+      "displayName": "Code Linter",
+      "inherits": "base",
+      "configurePreset": "code_linter"
     }
   ],
   "testPresets": []

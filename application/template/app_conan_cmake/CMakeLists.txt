@@ -5,15 +5,21 @@ set(target_name ${PROJECT_NAME})
 
 # --- import tools and configuration
 
+option(CODE_LINTER "Enable code linter tools(cppcheck, clang-tidy, ...)" OFF)
+
 set(tool_dirpath "../../../tool")
 include(${tool_dirpath}/cmake/compiler/compiler_options.cmake)
-include(${tool_dirpath}/cmake/cppcheck.cmake)
 
 if(CMAKE_CROSSCOMPILING)
   include(${tool_dirpath}/cmake/compiler/binary_size.cmake)
   include(${tool_dirpath}/cmake/compiler/map_file.cmake) # needs target_name to be defined
-else()
-  include(${tool_dirpath}/cmake/clang_tidy.cmake)
+endif()
+
+if(CODE_LINTER)
+  include(${tool_dirpath}/cmake/cppcheck.cmake)
+  if(CMAKE_CROSSCOMPILING)
+    include(${tool_dirpath}/cmake/clang_tidy.cmake)
+  endif()
 endif()
 
 # ---

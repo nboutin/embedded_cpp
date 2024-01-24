@@ -36,6 +36,10 @@ build_template_app_cmake(){
   cmake --build --preset host_clang
   cmake --build --preset host_clang --target install
 
+  title_2 "Code Linter"
+  cmake --preset code_linter
+  cmake --build --preset code_linter
+
   cd -
 }
 
