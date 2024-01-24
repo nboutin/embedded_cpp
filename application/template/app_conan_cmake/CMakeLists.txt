@@ -10,6 +10,7 @@ option(CODE_LINTER "Enable code linter tools(cppcheck, clang-tidy, ...)" OFF)
 set(tool_dirpath "../../../tool")
 include(${tool_dirpath}/cmake/in_source_build_guard.cmake)
 include(${tool_dirpath}/cmake/compiler/compiler_options.cmake)
+include(${tool_dirpath}/cmake/format.cmake)
 
 if(CMAKE_CROSSCOMPILING)
   include(${tool_dirpath}/cmake/compiler/binary_size.cmake)

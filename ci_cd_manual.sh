@@ -31,6 +31,9 @@ build_template_app_cmake(){
   cmake --build --preset host_gcc
   cmake --build --preset host_gcc --target install
 
+  title_2 "clang-format"
+  cmake --build --preset host_gcc --target clang-format-check
+
   title_2 "Host Clang"
   cmake --preset host_clang
   cmake --build --preset host_clang
@@ -51,6 +54,9 @@ build_template_app_conan_cmake(){
 
   title_2 "Cross compile"
   conan build . -pr stm32f
+
+  title_2 "clang-format"
+  cmake --build --preset conan-minsizerel --target clang-format-check
 
   cd -
 }
