@@ -36,7 +36,7 @@ or download it from github as zip
 
 Install
 
-  pip install --use pre-commit
+  pip install --user pre-commit
 
 Create a .pre-commit-config.yaml file
 

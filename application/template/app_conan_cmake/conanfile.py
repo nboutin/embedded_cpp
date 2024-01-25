@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from conan import ConanFile
 from conan.tools.cmake import cmake_layout, CMake
 

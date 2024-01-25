@@ -1,19 +1,46 @@
 # * to update pre-commit hooks run: pre-commit autoupdate
+# * https://github.com/pre-commit/pre-commit-hooks
 # * https://pre-commit.com/hooks.html
+
 repos:
+  - repo: meta
+    hooks:
+      # - id: check-hooks-apply
+      - id: check-useless-excludes
+      # - id: identity # debugging
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
+      # file
+      - id: check-added-large-files
       - id: end-of-file-fixer
       - id: trailing-whitespace
+      - id: fix-byte-order-marker
+      - id: check-symlinks
+      - id: destroyed-symlinks
+      - id: mixed-line-ending
+        args: [--fix=auto]
+
+      # checker
+      - id: check-json
+      - id: check-xml
       - id: check-yaml
         args: [--allow-multiple-documents]
-      - id: check-json
-      - id: check-added-large-files
-      - id: check-merge-conflict
+
+      # Python
+      - id: check-ast
+      - id: check-builtin-literals
+      - id: check-docstring-first
+      - id: debug-statements
       - id: double-quote-string-fixer
-      - id: fix-encoding-pragma
+      - id: name-tests-test # default --pytest
       - id: requirements-txt-fixer
+
+      # Git
+      - id: check-merge-conflict
+      - id: check-vcs-permalinks
+      - id: forbid-new-submodules
+
   - repo: https://github.com/pre-commit/mirrors-clang-format
     rev: "v17.0.6"
     hooks:
@@ -22,19 +49,19 @@ repos:
     rev: v0.0.1
     hooks:
       - id: sync-pre-commit-deps
-  # - repo: https://github.com/asottile/pyupgrade
-  #   rev: v3.15.0
-  #   hooks:
-  #     - id: pyupgrade
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.0
+    hooks:
+      - id: pyupgrade
   # - repo: https://github.com/adrienverge/yamllint.git
   #   rev: v1.33.0
   #   hooks:
-  #       - id: yamllint
-  #         args: [--format, parsable, --strict]
+  #     - id: yamllint
+  #       args: [--format, parsable, --strict]
   # - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
   #   rev: 0.2.3
   #   hooks:
-  #       - id: yamlfmt
+  #     - id: yamlfmt
   # - repo: https://github.com/Lucas-C/pre-commit-hooks
   #   rev: v1.5.4
   #   hooks:
