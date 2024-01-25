@@ -1,6 +1,7 @@
 # * Need LLVM installed and in the path.
 # * see git-clang-format help and option:
 #   https://github.com/llvm/llvm-project/blob/main/clang/tools/clang-format/git-clang-format
+# * https://clang.llvm.org/docs/ClangFormat.html
 
 find_program(CLANG_FORMAT_PROGRAM clang-format)
 find_program(GIT_CLANG_FORMAT_PROGRAM git-clang-format)

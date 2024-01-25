@@ -29,3 +29,21 @@ or download it from github as zip
   mkdir build; cd build
   cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS=clang -DLLVM_EXTERNAL_PROJECTS=iwyu -DLLVM_EXTERNAL_IWYU_SOURCE_DIR=/d/perso/dev/include-what-you-use ../llvm
   ninja
+
+## pre-commit
+
+* https://pre-commit.com/
+
+Install
+
+  pip install --use pre-commit
+
+Create a .pre-commit-config.yaml file
+
+Install hook:
+
+  pre-commit install
+
+For new pre-commit hook, run it on all files:
+
+  pre-commit run --all-files
