@@ -1,4 +1,7 @@
 ---
+Language: Json
+BasedOnStyle: LLVM
+---
 Language: Cpp
 AlignAfterOpenBracket: Align
 AlignArrayOfStructures: Right

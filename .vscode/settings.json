@@ -1,9 +1,9 @@
 {
-    "editor.tabSize": 2,
-    "cmake.sourceDirectory": [
-        "${workspaceFolder}/application/template/app_cmake",
-        "${workspaceFolder}/application/template/app_conan_cmake",
-        "${workspaceFolder}/sandbox/cmake_compiler_options",
-        "${workspaceFolder}/sandbox/iwyu"
-    ]
+  "editor.tabSize": 2,
+  "cmake.sourceDirectory": [
+    "${workspaceFolder}/application/template/app_cmake",
+    "${workspaceFolder}/application/template/app_conan_cmake",
+    "${workspaceFolder}/sandbox/cmake_compiler_options",
+    "${workspaceFolder}/sandbox/iwyu"
+  ]
 }
