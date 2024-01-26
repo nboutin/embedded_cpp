@@ -1,11 +1,10 @@
-#!/bash
+#!/usr/bin/env bash
 
 # On error, exit immediately
 set -e
 
 main() {
-	pip install --user -U -r requirements.txt
-	pre-commit install
+	./setup.sh
 
 	install_conan_config
 	build_template_app_cmake

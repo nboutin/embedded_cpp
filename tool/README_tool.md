@@ -43,7 +43,7 @@ Create a .pre-commit-config.yaml file
 
 Install hook:
 
-  pre-commit install
+  pre-commit install -t pre-commit -t pre-push
 
 For new pre-commit hook, run it on all files:
 

@@ -24,6 +24,7 @@ repos:
         name: pre-commit autoupdate
         description: Update pre-commit hooks to the latest version.
         entry: pre-commit autoupdate
+        pass_filenames: false
         language: system
         stages: [pre-push, manual]
         always_run: true
@@ -119,7 +120,7 @@ repos:
   #     - --use-current-year
   #     - --no-extra-eol # see below
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.3.2
+    rev: v1.3.3
     hooks:
       - id: python-safety-dependencies-check
   # - repo: https://github.com/koalaman/shellcheck-precommit
@@ -168,10 +169,10 @@ repos:
     rev: v3.13.0
     hooks:
       - id: commitizen
-      - id: commitizen-branch
-        stages:
-          - post-commit
-          - push
+      # - id: commitizen-branch
+      #   stages:
+      #     - post-commit
+      #     - push
   # - repo: https://github.com/cheshirekow/cmake-format-precommit
   #   rev: v0.6.13
   #   hooks:
