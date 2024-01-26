@@ -6,8 +6,8 @@
 find_program(CLANG_FORMAT_PROGRAM clang-format)
 find_program(GIT_CLANG_FORMAT_PROGRAM git-clang-format)
 find_program(GIT_PROGRAM git)
-# find_program(CMAKE_FORMAT_PROGRAM cmake-format)
 find_package(Python)
+# find_program(CMAKE_FORMAT_PROGRAM cmake-format)
 
 if(CLANG_FORMAT_PROGRAM
    AND GIT_CLANG_FORMAT_PROGRAM
@@ -25,7 +25,8 @@ if(CLANG_FORMAT_PROGRAM
   add_custom_target(
     clang-format-check
     COMMENT "Return error if files are not formatted correctly."
-    COMMAND ${CLANG_FORMAT_COMMAND} --force --commit ${GIT_EMPTY_TREE_HASH} --diff --quiet --extensions=c,h,cpp,hpp --style=file
+    COMMAND ${CLANG_FORMAT_COMMAND} --force --commit ${GIT_EMPTY_TREE_HASH} --diff --quiet --extensions=c,h,cpp,hpp
+            --style=file
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
   add_custom_target(
@@ -34,4 +35,9 @@ if(CLANG_FORMAT_PROGRAM
     COMMAND ${CLANG_FORMAT_COMMAND} --force --commit ${GIT_EMPTY_TREE_HASH} --extensions=c,h,cpp,hpp --style=file
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
+else()
+  message(ERROR "CLANG_FORMAT_PROGRAM: ${CLANG_FORMAT_PROGRAM}")
+  message(ERROR "GIT_CLANG_FORMAT_PROGRAM: ${GIT_CLANG_FORMAT_PROGRAM}")
+  message(ERROR "Python_FOUND: ${Python_FOUND}")
+  message(ERROR "GIT_PROGRAM: ${GIT_PROGRAM}")
 endif()
