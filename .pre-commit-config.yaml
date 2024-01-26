@@ -5,8 +5,8 @@
 repos:
   - repo: meta
     hooks:
-      # - id: check-hooks-apply
       - id: check-useless-excludes
+      # - id: check-hooks-apply
       # - id: identity # debugging
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
@@ -32,7 +32,7 @@ repos:
       - id: check-builtin-literals
       - id: check-docstring-first
       - id: debug-statements
-      - id: double-quote-string-fixer
+      # - id: double-quote-string-fixer
       - id: name-tests-test # default --pytest
       - id: requirements-txt-fixer
 
@@ -42,7 +42,7 @@ repos:
       - id: forbid-new-submodules
 
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: "v17.0.6"
+    rev: 'v17.0.6'
     hooks:
       - id: clang-format
   - repo: https://github.com/mxr/sync-pre-commit-deps
@@ -65,30 +65,88 @@ repos:
   # - repo: https://github.com/Lucas-C/pre-commit-hooks
   #   rev: v1.5.4
   #   hooks:
-  #     - id: forbid-crlf
-  #     - id: remove-crlf
-  #     - id: forbid-tabs
-  #     - id: remove-tabs
-  #       args: [--whitespaces-count, "2"] # defaults to: 4
-  #     - id: chmod
-  #       args: ["644"]
-  #       files: \.md$
-  #     - id: insert-license
-  #       files: \.groovy$
-  #       args:
-  #         - --license-filepath
-  #         - src/license_header.txt # defaults to: LICENSE.txt
-  #         - --comment-style
-  #         - // # defaults to:  #
-  #         - --use-current-year
-  #         - --no-extra-eol # see below
+      # - id: forbid-crlf
+      # - id: remove-crlf
+      # - id: forbid-tabs
+      # - id: remove-tabs
+      # args: [--whitespaces-count, '2'] # defaults to: 4
+      # - id: chmod
+      #   args: ["644"]
+      #   files: \.md$
+      # - id: insert-license
+      #   files: \.groovy$
+      #   args:
+      #     - --license-filepath
+      #     - src/license_header.txt # defaults to: LICENSE.txt
+      #     - --comment-style
+      #     - // # defaults to:  #
+      #     - --use-current-year
+      #     - --no-extra-eol # see below
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
     rev: v1.3.2
     hooks:
       - id: python-safety-dependencies-check
-  # - repo: git://github.com/detailyang/pre-commit-shell
-  #   rev: v1.0.6
+  # - repo: https://github.com/koalaman/shellcheck-precommit
+  #   rev: v0.9.0
   #   hooks:
-  #     - id: shell-lint
-  #       args: [--format=json]
-# github.com/lovesegfault/beautysh
+  #     - id: shellcheck
+  #       args: ["--severity=warning"]  # Optionally only show errors and warnings
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.6
+    hooks:
+      - id: shellcheck
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+      - id: gitlint
+    # Using this mirror lets us use mypyc-compiled black, which is about 2x faster
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 24.1.0
+    hooks:
+      - id: black
+        language_version: python3.11
+  # - repo: https://github.com/pocc/pre-commit-hooks
+  #   rev: v1.3.5
+  #   hooks:
+  # - id: clang-format
+  #   args: [--style=Google]
+  # - id: clang-tidy
+  # - id: oclint
+  # - id: uncrustify
+  # - id: cppcheck
+  # - id: cpplint
+  # - id: include-what-you-use
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint-fix
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.13.0
+    hooks:
+      - id: commitizen
+      - id: commitizen-branch
+        stages:
+          - post-commit
+          - push
+  # - repo: https://github.com/cheshirekow/cmake-format-precommit
+  #   rev: v0.6.13
+  #   hooks:
+  #     - id: cmake-format
+  #     - id: cmake-lint
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.7.0-4
+    hooks:
+      - id: shfmt
+  # CMake formatter
+  # - repo: https://github.com/BlankSpruce/gersemi
+  #   rev: 0.11.0
+  #   hooks:
+  #     - id: gersemi
+  # - repo: https://github.com/mrtazz/checkmake.git
+  #   rev: 0.2.2
+  #   hooks:
+  #     - id: checkmake
