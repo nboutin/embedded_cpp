@@ -1,9 +1,12 @@
-#!/bin/bash
+#!/bash
 
 # On error, exit immediately
 set -e
 
 main() {
+	pip install --user -U -r requirements.txt
+	pre-commit install
+
 	install_conan_config
 	build_template_app_cmake
 	build_template_app_conan_cmake
@@ -100,4 +103,4 @@ error() {
 (
 	time main
 	printf "\nCI/CD Done\n"
-) 2>&1 | tee ci_cd_manual.log # redirect stdout/stderr to a file
+) 2>&1 | tee logs/ci_cd_manual.log # redirect stdout/stderr to a file

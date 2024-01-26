@@ -2,12 +2,48 @@
 # * https://github.com/pre-commit/pre-commit-hooks
 # * https://pre-commit.com/hooks.html
 
+# https://pre-commit.ci/
+# ci:
+#   autofix_commit_msg: [pre-commit.ci] auto fixes from pre-commit.com hooks
+# for more information, see https://pre-commit.ci
+#   autofix_prs: true
+#   autoupdate_branch:
+#   autoupdate_commit_msg: [pre-commit.ci] pre-commit autoupdate
+#   autoupdate_schedule: weekly
+#   submodules: false
+
 repos:
   - repo: meta
     hooks:
       - id: check-useless-excludes
       # - id: check-hooks-apply
       # - id: identity # debugging
+  - repo: local
+    hooks:
+      - id: pre-commit-autoupdate
+        name: pre-commit autoupdate
+        description: Update pre-commit hooks to the latest version.
+        entry: pre-commit autoupdate
+        language: system
+        stages: [pre-push, manual]
+        always_run: true
+      # # pre-commit run cmake-build --hook-stage manual
+      # - id: cmake-build
+      #   name: Run CMake build
+      #   entry: ./cmake_build.sh
+      #   args: ["application/template/app_cmake", "arm_gcc"]
+      #   language: script
+      #   pass_filenames: false
+      #   stages: [pre-push, manual]
+      # pre-commit run cmake-build --hook-stage manual
+      - id: ci_cd_manual
+        name: Run CI/CD manual
+        entry: ./ci_cd_manual.sh
+        language: script
+        pass_filenames: false
+        stages: [pre-push, manual]
+        verbose: true
+        log_file: logs/ci_cd_manual.log
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
@@ -65,23 +101,23 @@ repos:
   # - repo: https://github.com/Lucas-C/pre-commit-hooks
   #   rev: v1.5.4
   #   hooks:
-      # - id: forbid-crlf
-      # - id: remove-crlf
-      # - id: forbid-tabs
-      # - id: remove-tabs
-      # args: [--whitespaces-count, '2'] # defaults to: 4
-      # - id: chmod
-      #   args: ["644"]
-      #   files: \.md$
-      # - id: insert-license
-      #   files: \.groovy$
-      #   args:
-      #     - --license-filepath
-      #     - src/license_header.txt # defaults to: LICENSE.txt
-      #     - --comment-style
-      #     - // # defaults to:  #
-      #     - --use-current-year
-      #     - --no-extra-eol # see below
+  # - id: forbid-crlf
+  # - id: remove-crlf
+  # - id: forbid-tabs
+  # - id: remove-tabs
+  # args: [--whitespaces-count, '2'] # defaults to: 4
+  # - id: chmod
+  #   args: ["644"]
+  #   files: \.md$
+  # - id: insert-license
+  #   files: \.groovy$
+  #   args:
+  #     - --license-filepath
+  #     - src/license_header.txt # defaults to: LICENSE.txt
+  #     - --comment-style
+  #     - // # defaults to:  #
+  #     - --use-current-year
+  #     - --no-extra-eol # see below
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
     rev: v1.3.2
     hooks:
@@ -120,6 +156,10 @@ repos:
     rev: v2.2.6
     hooks:
       - id: codespell
+        require_serial: false
+        files: .*\.(py|txt|cmake|md|rst|sh|ps1|hpp|tpp|cpp|cc)$
+        args: [-S, '.git,third_party'] # , -I, .codespell.allow
+
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.38.0
     hooks:
