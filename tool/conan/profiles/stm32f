@@ -16,7 +16,21 @@ compiler.libcxx=libstdc++
 [conf]
 {# https://docs.conan.io/2/reference/config_files/global_conf.html?highlight=tools%20build%20cross_building #}
 tools.cmake.cmaketoolchain:generator=Ninja
-tools.cmake.cmaketoolchain:toolchain_file={{profile_dir}}/cmake_toolchain/arm_gcc_toolchain.cmake
+{# tools.cmake.cmaketoolchain:toolchain_file={{profile_dir}}/cmake_toolchain/arm_gcc_toolchain.cmake #}
+
+{% set compile_link_options = "-mcpu=" + cpu + " -mthumb -mtune=" + cpu + " -mfpu=" + fpu + " -mfloat-abi=" + float_abi %}
+tools.build.cross_building:can_run=False
+tools.build:compiler_executables={"c": "arm-none-eabi-gcc", "cpp": "arm-none-eabi-g++", "asm": "arm-none-eabi-gcc"}
+tools.build:defines=["$<$<COMPILE_LANGUAGE:ASM>:${ASM_FLAGS}>"]
+tools.build:cflags=["{{ compile_link_options }}"]
+tools.build:cxxflags=["{{ compile_link_options }}"]
+tools.build:exelinkflags=["{{ compile_link_options }} --specs=nosys.specs", "--specs=picolibc.specs"]
 
 [buildenv]
 CMAKE_EXPORT_COMPILE_COMMANDS=ON
+CMAKE_TRY_COMPILE_TARGET_TYPE="STATIC_LIBRARY"
+
+[options]
+
+[tool_requires]
+{# arm-gnu-toolchain/12.3.1 #}
