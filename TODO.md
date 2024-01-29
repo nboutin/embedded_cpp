@@ -2,7 +2,6 @@
 
 ## Must have
 
-- Compile app_conan_cmake with GNU and Clang compiler
 - Use #include from other target using #include "component/header.h" format
 - Add GoogleTest GoogleMock Cutie
 - Use sanitizer compiler options for Tests

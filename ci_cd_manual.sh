@@ -57,6 +57,12 @@ build_template_app_conan_cmake() {
 	title_2 "Cross compile"
 	conan build . -pr stm32f
 
+	title_2 "Host GCC"
+	conan build . -pr gcc
+
+	title_2 "Host Clang"
+	conan build . -pr clang
+
 	title_2 "clang-format"
 	cmake --build --preset conan-minsizerel --target clang-format-check
 
