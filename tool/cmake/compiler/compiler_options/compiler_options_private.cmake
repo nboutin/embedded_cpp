@@ -37,7 +37,7 @@ set(warning_options_cpp
     -Woverloaded-virtual
     -Wzero-as-null-pointer-constant
     -Wextra-semi
-    -Wno-c++98-compat
+    # -Wno-c++98-compat
     # -Wnrvo # Warn if return value optimization is not performed -Wreturn-mismatch # Warn if a function returns a value
     # whose type is incompatible with the function's declared return type Disabled Warnings -Wno-c++98-compat
     # -Wno-c++98-compat-pedantic -Wno-exit-time-destructors # causes warnings if you use static values

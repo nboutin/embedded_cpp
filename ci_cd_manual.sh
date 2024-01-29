@@ -4,17 +4,13 @@
 set -e
 
 main() {
-	./setup.sh
+	echo -e "# CI/CD Manual"
 
-	install_conan_config
+	./setup.sh
 	build_template_app_cmake
 	build_template_app_conan_cmake
 	# run_clang_tidy
-}
-
-install_conan_config() {
-	title_1 "Install Conan config"
-	(cd tool/conan && ./conan_config_install.sh)
+	title_1 "Execution time"
 }
 
 build_template_app_cmake() {
@@ -33,13 +29,13 @@ build_template_app_cmake() {
 	cmake --build --preset host_gcc
 	cmake --build --preset host_gcc --target install
 
-	title_2 "clang-format"
-	cmake --build --preset host_gcc --target clang-format-check
-
 	title_2 "Host Clang"
 	cmake --preset host_clang
 	cmake --build --preset host_clang
 	cmake --build --preset host_clang --target install
+
+	title_2 "Clang Format"
+	cmake --build --preset host_gcc --target clang-format-check
 
 	title_2 "Code Linter"
 	cmake --preset code_linter
@@ -54,7 +50,7 @@ build_template_app_conan_cmake() {
 	cd application/template/app_conan_cmake
 	rm -rf build/
 
-	title_2 "Cross compile"
+	title_2 "ARM GCC"
 	conan build . -pr stm32f
 
 	title_2 "Host GCC"
@@ -63,7 +59,7 @@ build_template_app_conan_cmake() {
 	title_2 "Host Clang"
 	conan build . -pr clang
 
-	title_2 "clang-format"
+	title_2 "Clang Format"
 	cmake --build --preset conan-minsizerel --target clang-format-check
 
 	cd -
@@ -89,11 +85,11 @@ info() {
 }
 
 title_1() {
-	echo -e "\n#=== $1"
+	echo -e "\n## $1"
 }
 
 title_2() {
-	echo -e "\n#--- $1"
+	echo -e "\n### $1"
 }
 
 error() {
@@ -107,5 +103,5 @@ error() {
 
 (
 	time main
-	printf "\nCI/CD Done\n"
-) 2>&1 | tee logs/ci_cd_manual.log # redirect stdout/stderr to a file
+	echo -e "\n## CI/CD Done\n"
+) 2>&1 | tee logs/ci_cd_manual.md # redirect stdout/stderr to a file

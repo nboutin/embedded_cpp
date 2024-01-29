@@ -1,5 +1,5 @@
 
-#include "component_c.h"
+#include "component_c/component_c.h"
 
 int main()
 {

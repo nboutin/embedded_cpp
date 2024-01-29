@@ -44,7 +44,7 @@ repos:
         pass_filenames: false
         stages: [pre-push, manual]
         verbose: true
-        log_file: logs/ci_cd_manual.log
+        log_file: logs/ci_cd_manual.md
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:

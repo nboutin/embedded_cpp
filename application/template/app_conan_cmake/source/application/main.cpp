@@ -1,7 +1,7 @@
 
-#include "component_c.h"
+#include "component_c/component_c.h"
 
-auto main() -> int
+int main()
 {
   const int res = COMP_C_add(1, 2);
   (void) res;
