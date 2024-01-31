@@ -7,14 +7,15 @@ main() {
 	echo -e "# CI/CD Manual"
 
 	./setup.sh
-	build_template_app_cmake
-	build_template_app_conan_cmake
+	build_app_template_app_cmake
+	build_app_template_app_conan_cmake
+	build_lib_template_lib_conan_cmake
 	# run_clang_tidy
 	title_1 "Execution time"
 }
 
-build_template_app_cmake() {
-	title_1 "Build Application CMake template"
+build_app_template_app_cmake() {
+	title_1 "Build Application Template CMake"
 
 	cd application/template/app_cmake
 	rm -rf build/
@@ -44,8 +45,8 @@ build_template_app_cmake() {
 	cd -
 }
 
-build_template_app_conan_cmake() {
-	title_1 "Build Application Conan CMake template"
+build_app_template_app_conan_cmake() {
+	title_1 "Build Application Template Conan CMake"
 
 	cd application/template/app_conan_cmake
 	rm -rf build/
@@ -61,6 +62,24 @@ build_template_app_conan_cmake() {
 
 	title_2 "Clang Format"
 	cmake --build --preset conan-minsizerel --target clang-format-check
+
+	cd -
+}
+
+build_lib_template_lib_conan_cmake() {
+	title_1 "Build Library Template Conan CMake"
+
+	cd library/template/lib_conan_cmake
+	rm -rf test_package/build/
+
+	title_2 "GCC"
+	conan create . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc
+
+	title_2 "GCC MinSizeRel"
+	conan create . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc -s build_type=MinSizeRel
+
+	title_2 "Conan cache list"
+	conan list timer_sw/*:*
 
 	cd -
 }
