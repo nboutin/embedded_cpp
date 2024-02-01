@@ -1,5 +1,5 @@
 from conan import ConanFile
-from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
+from conan.tools.cmake import CMake, cmake_layout
 
 
 class Recipe(ConanFile):
@@ -51,4 +51,4 @@ class Recipe(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["timer_sw"]
+        self.cpp_info.libs = [self.name]
