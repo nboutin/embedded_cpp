@@ -3,6 +3,7 @@
 Links:
 
 - <https://docs.conan.io/2/tutorial/creating_packages/create_your_first_package.html>
+- <https://docs.conan.io/2/reference/conanfile/methods.html#reference-conanfile-methods>
 
 ## Create Conan package skeleton
 

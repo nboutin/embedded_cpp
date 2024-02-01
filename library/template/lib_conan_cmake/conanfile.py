@@ -22,6 +22,8 @@ class Recipe(ConanFile):
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "source/*", "include/*"
 
+    generators = "CMakeDeps", "CMakeToolchain"
+
     def config_options(self):
         if self.settings.os == "Windows":
             self.options.rm_safe("fPIC")
@@ -33,12 +35,11 @@ class Recipe(ConanFile):
     def layout(self):
         cmake_layout(self)
 
-    def generate(self):
-        # self.generators = "CMakeToolchain"
-        deps = CMakeDeps(self)
-        deps.generate()
-        tc = CMakeToolchain(self)
-        tc.generate()
+    # def generate(self):
+    #     deps = CMakeDeps(self)
+    #     deps.generate()
+    #     tc = CMakeToolchain(self)
+    #     tc.generate()
 
     def build(self):
         cmake = CMake(self)
