@@ -9,7 +9,7 @@ main() {
 	./setup.sh
 	build_app_template_app_cmake
 	build_app_template_app_conan_cmake
-	build_lib_template_lib_conan_cmake
+	build_lib_template_lib_conan_cmake_timer_sw
 	# run_clang_tidy
 	title_1 "Execution time"
 }
@@ -66,10 +66,10 @@ build_app_template_app_conan_cmake() {
 	cd -
 }
 
-build_lib_template_lib_conan_cmake() {
-	title_1 "Build Library Template Conan CMake"
+build_lib_template_lib_conan_cmake_timer_sw() {
+	title_1 "Build Library Template Conan CMake Timer SW"
 
-	cd library/template/lib_conan_cmake
+	cd library/template/lib_conan_cmake/timer_sw
 	rm -rf test_package/build/
 
 	title_2 "GCC"
