@@ -1,0 +1,102 @@
+[user]
+	name = Nicolas Boutin
+	email = nicolas.boutin@external.magnetimarelli.com
+[gc]
+	auto = 256
+[push]
+	default = simple
+[credential]
+#	helper = wincred
+[core]
+	editor = nano
+	preloadindex = true
+	fscache = true
+	autocrlf = false
+	whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent,tabwidth=2
+[color]
+	ui = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[alias]
+	fa = fetch --all -j8 --progress --prune
+	st = status -sb
+	sti = status -sb --ignored
+	br = branch
+	co = checkout
+	mfc = merge --no-ff --no-commit
+	su = submodule update --recursive --jobs 2
+	sui = submodule update --init --recursive --jobs 2
+	dt = difftool
+	dtc = difftool --cached
+	mt = mergetool
+	rv = remote -v
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit -10
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all -10
+	dfc = diff --cached
+	commend = commit --amend --no-edit
+	sf = submodule foreach --recursive
+	cl = clean -fd
+	clff = clean -dfxf
+	dd = difftool --dir-diff
+	dds = difftool --dir-diff --staged
+[status]
+	submoduleSummary = true
+[diff]
+	tool = bc
+	guitool = bc
+[difftool]
+	prompt = false
+	keepbackup = false
+[difftool "meld"]
+	path = D:\\prog\\meld\\Meld.exe
+	cmd = \"D:/prog/meld/Meld.exe\" \"$LOCAL\" \"$REMOTE\"
+[difftool "araxis"]
+	path = D:\\prog\\Araxis Merge v6.5\\Compare.exe
+[difftool "bc3"]
+	path = D:\\Users\\f24178c\\program\\Beyond Compare 3\\BComp.exe
+[difftool "bc"]
+	path = D:/program/Beyond Compare 4/BComp.exe
+	cmd = \"\" \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = bc
+	guitool = bc
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "meld"]
+	path = D:/prog/meld/Meld.exe
+	cmd = \"D:/prog/meld/Meld.exe\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output=\"$MERGED\" --auto-merge
+[mergetool "araxis"]
+	path = D:\\prog\\Araxis Merge v6.5\\Compare.exe
+[mergetool "bc3"]
+	path = D:\\Users\\f24178c\\program\\Beyond Compare 3\\BComp.exe
+[mergetool "bc"]
+	path = D:/program/Beyond Compare 4/BComp.exe
+[url "https://hub.marelli.com/bitbucket"]
+	insteadOf = https://jind.magnetimarelli.com/pbitbucket
+[url "https://f24178c@hub.marelli.com/bitbucket"]
+	insteadOf = https://f24178c@jind.magnetimarelli.com/pbitbucket
+[credential "https://hub.marelli.com"]
+	provider = generic
+[credential "http://172.16.54.9:8080"]
+	provider = generic
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false
+[fetch]
+	prune = false
+[rebase]
+	autoStash = false
+	autosquash = false
+	updateRefs = false
+[difftool "sourcetree"]
+	cmd = 'D:/program/Beyond Compare 4/BComp.exe' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = 'D:/program/Beyond Compare 4/BComp.exe' \"$LOCAL\" \"$REMOTE\" \"$BASE\" -o \"$MERGED\"
+	trustExitCode = true
