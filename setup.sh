@@ -15,6 +15,9 @@ title_2() {
 
 title_1 "Setup project dependencies"
 
+title_2 "Update pip"
+python -m pip install -U pip
+
 title_2 "Install Python requirements"
 pip install --user -U -r requirements.txt
 
