@@ -1,5 +1,9 @@
 # Application template
 
+winlibs:
+
+* winlibs-x86_64-mcf-seh-gcc-13.2.0-mingw-w64ucrt-11.0.1-r2
+
 ## With CMake presets
 
     cmake --preset cross_compile

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # --- Command line
 alias ll='ls -laF'
