@@ -5,82 +5,19 @@
  * \date 2023-02
  */
 
-#include <stddef.h>
+#include "dlt_client.h"
 
-#include "timer_sw.h"
+void DLT_RegisterApp(const app_id_t name, const char* desc) {}
 
-void TimerSw_Init(TimerSw_t* const timer,
-                  TimerSw_Callback_t callback,
-                  void* user_data)
-{
-  if (timer != NULL)
-  {
-    timer->elapsed_time_ms = 0;
-    timer->timeout_ms      = 0;
-    timer->state           = TIMER_STATE_STOPPED;
-    timer->callback        = callback;
-    timer->user_data       = user_data;
-  }
-}
+void DLT_RegisterContext(dlt_context_t* dlt_context,
+                         const app_id_t app_id,
+                         const ctx_id_t ctx_id,
+                         const char* desc)
+{}
 
-void TimerSw_SetTimeout(TimerSw_t* const timer, uint32_t timeout_ms)
-{
-  if (timer != NULL)
-  {
-    timer->elapsed_time_ms = 0;
-    timer->timeout_ms      = timeout_ms;
-    timer->state           = TIMER_STATE_RUNNING;
-  }
-}
-
-void TimerSw_SetInterval(TimerSw_t* const timer, uint32_t period_ms)
-{
-  if (timer != NULL)
-  {
-    timer->elapsed_time_ms = 0;
-    timer->timeout_ms      = period_ms;
-    timer->state           = TIMER_STATE_AUTO_RELOAD;
-  }
-}
-
-void TimerSw_Stop(TimerSw_t* const timer)
-{
-  if (timer != NULL)
-  {
-    timer->elapsed_time_ms = 0;
-    timer->state           = TIMER_STATE_STOPPED;
-  }
-}
-
-void TimerSw_Tick(TimerSw_t* timer, uint32_t period_ms)
-{
-  if ((timer != NULL) && (timer->state != TIMER_STATE_STOPPED))
-  {
-    timer->elapsed_time_ms += period_ms;
-
-    // Timeout reached
-    if (timer->elapsed_time_ms >= timer->timeout_ms)
-    {
-      // Reload
-      timer->elapsed_time_ms = 0;
-
-      if (timer->state == TIMER_STATE_RUNNING)
-      {
-        timer->state = TIMER_STATE_STOPPED;
-      }
-      else if (timer->state == TIMER_STATE_AUTO_RELOAD)
-      {
-        // do nothing
-      }
-      else
-      {
-        // do nothing
-      }
-
-      if (timer->callback != NULL)
-      {
-        timer->callback(timer->user_data);
-      }
-    }
-  }
-}
+void DLT_Log(dlt_context_t* dlt_context,
+             log_level_t log_level,
+             uint8_t msg_id,
+             const char* string,
+             uint32_t arg1)
+{}

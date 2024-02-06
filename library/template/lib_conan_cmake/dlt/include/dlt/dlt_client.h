@@ -9,8 +9,8 @@ extern "C" {
 
 // --- Public types
 
-typedef char app_id_t[4];
-typedef char ctx_id_t[4];
+typedef char app_id_t[5];
+typedef char ctx_id_t[5];
 typedef uint8_t log_level_t;
 
 typedef struct {
@@ -18,6 +18,8 @@ typedef struct {
   uint8_t msg_counter;   /*!< message counter */
   log_level_t log_level; /*!< log level */
 } __attribute__((packed)) dlt_context_t;
+
+#define DLT_LOG_INFO ((log_level_t) 6U)
 
 // --- Public functions
 

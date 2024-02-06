@@ -22,5 +22,5 @@ class Recipe(ConanFile):
 
     def test(self):
         if can_run(self):
-            cmd = os.path.join(self.cpp.build.bindir, "timer_sw_package_test")
+            cmd = os.path.join(self.cpp.build.bindir, "dlt_package_test")
             self.run(cmd, env="conanrun")
