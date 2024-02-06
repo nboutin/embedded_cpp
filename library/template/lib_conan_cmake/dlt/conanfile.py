@@ -2,7 +2,7 @@ from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
 
 
-class Recipe(ConanFile):
+class DLTRecipe(ConanFile):
     name = "dlt"
     version = "0.1.0"
     package_type = "library"

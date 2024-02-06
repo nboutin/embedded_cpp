@@ -10,6 +10,7 @@ main() {
 	build_app_template_app_cmake
 	build_app_template_app_conan_cmake
 	build_lib_template_lib_conan_cmake_timer_sw
+	build_lib_template_lib_conan_cmake_dlt
 	# run_clang_tidy
 	title_1 "Execution time"
 }
@@ -80,6 +81,21 @@ build_lib_template_lib_conan_cmake_timer_sw() {
 
 	title_2 "Conan cache list"
 	conan list timer_sw/*:*
+
+	cd -
+}
+
+build_lib_template_lib_conan_cmake_dlt() {
+	title_1 "Build Library Template Conan CMake DLT"
+
+	cd library/template/lib_conan_cmake/dlt
+	rm -rf test_package/build/
+
+	title_2 "GCC MinSizeRel"
+	conan create . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc -s build_type=MinSizeRel
+
+	title_2 "Conan cache list"
+	conan list dlt/*:*
 
 	cd -
 }

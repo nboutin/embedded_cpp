@@ -20,3 +20,7 @@ Links:
   conan list timer_sw
   conan list timer_sw/0.1.0#:*
   conan list timer_sw/*:*
+
+## Conan repository
+
+See doc/artifactory.md

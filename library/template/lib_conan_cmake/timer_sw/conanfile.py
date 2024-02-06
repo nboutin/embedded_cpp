@@ -2,7 +2,7 @@ from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
 
 
-class Recipe(ConanFile):
+class TimerSWRecipe(ConanFile):
     name = "timer_sw"
     version = "0.1.0"
     package_type = "library"
@@ -31,6 +31,9 @@ class Recipe(ConanFile):
     def configure(self):
         if self.options.shared:
             self.options.rm_safe("fPIC")
+
+    def requirements(self):
+        self.requires("dlt/[~0.1]")
 
     def layout(self):
         cmake_layout(self)

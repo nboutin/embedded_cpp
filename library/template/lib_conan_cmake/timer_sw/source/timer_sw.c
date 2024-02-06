@@ -7,12 +7,20 @@
 
 #include <stddef.h>
 
+#include "dlt/dlt_client.h"
+
 #include "timer_sw.h"
 
 void TimerSw_Init(TimerSw_t* const timer,
                   TimerSw_Callback_t callback,
                   void* user_data)
 {
+  app_id_t app_id = "TEST";
+  dlt_context_t dlt_context;
+  ctx_id_t ctx_id = "CTX1";
+  DLT_RegisterApp(app_id, "Test application");
+  DLT_RegisterContext(&dlt_context, app_id, ctx_id, "Test context");
+
   if (timer != NULL)
   {
     timer->elapsed_time_ms = 0;
