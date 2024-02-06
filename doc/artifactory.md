@@ -19,7 +19,7 @@ Skip unnecessary installation steps.
 ## Add Conan remote
 
 ```console
-conan remote add local <http://localhost:8081/artifactory/api/conan/conan-local>
+conan remote add local http://localhost:8081/artifactory/api/conan/conan-local
 ```
 
 List available remote:
@@ -34,7 +34,7 @@ Configure credential:
 conan remote login local <user> -p <password>
 ```
 
-> Escape special characters in password with '\'
+> Escape special characters in password with \
 
 Upload, download, search:
 
