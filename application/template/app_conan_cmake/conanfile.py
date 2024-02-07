@@ -8,9 +8,6 @@ class app_conan_cmake(ConanFile):
     settings = "compiler", "build_type", "os", "arch"
     generators = "CMakeToolchain", "CMakeDeps", "VirtualBuildEnv"
 
-    def build_requirements(self):
-        pass
-
     def requirements(self):
         self.requires("dlt/[~0.1]")
         self.requires("timer_sw/[~0.1]")

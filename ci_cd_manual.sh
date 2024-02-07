@@ -3,43 +3,90 @@
 # On error, exit immediately
 set -e
 
+source tool/script/helper/pretty_printer.sh
+
+script_title="CI/CD Manual"
+log_filename="ci_cd_manual"
+
 main() {
-	echo -e "# CI/CD Manual"
+	title "${script_title}"
 
 	./setup.sh
+	conan_cache_clean_all
+	# build_arm_gcc
+	build_lib_template_lib_conan_cmake_dlt
+	build_lib_template_lib_conan_cmake_timer_sw
 	build_app_template_app_cmake
 	build_app_template_app_conan_cmake
-	build_lib_template_lib_conan_cmake_timer_sw
-	build_lib_template_lib_conan_cmake_dlt
+
 	# run_clang_tidy
-	title_1 "Execution time"
+	header1 "Execution time"
+}
+
+build_arm_gcc() {
+	header1 "Build ARM GCC"
+
+	header2 "DLT"
+	cd library/template/lib_conan_cmake/dlt
+	rm -rf test_package/build/
+	conan create . -pr stm32f
+	cd -
+
+	header2 "Timer SW"
+	cd library/template/lib_conan_cmake/timer_sw
+	rm -rf test_package/build/
+	conan create . -pr stm32f
+	cd -
+
+}
+
+build_lib_template_lib_conan_cmake_dlt() {
+	header1 "Build Library Template Conan CMake DLT"
+
+	cd library/template/lib_conan_cmake/dlt
+	rm -rf test_package/build/
+
+	conan_create_template_library "dlt"
+
+	cd -
+}
+
+build_lib_template_lib_conan_cmake_timer_sw() {
+	header1 "Build Library Template Conan CMake Timer SW"
+
+	cd library/template/lib_conan_cmake/timer_sw
+	rm -rf test_package/build/
+
+	conan_create_template_library "timer_sw"
+
+	cd -
 }
 
 build_app_template_app_cmake() {
-	title_1 "Build Application Template CMake"
+	header1 "Build Application Template CMake"
 
 	cd application/template/app_cmake
 	rm -rf build/
 
-	title_2 "ARM GCC"
+	header2 "ARM GCC"
 	cmake --preset arm_gcc
 	cmake --build --preset arm_gcc
 	cmake --build --preset arm_gcc --target install
 
-	title_2 "Host GCC"
+	header2 "Host GCC"
 	cmake --preset host_gcc
 	cmake --build --preset host_gcc
 	cmake --build --preset host_gcc --target install
 
-	title_2 "Host Clang"
+	header2 "Host Clang"
 	cmake --preset host_clang
 	cmake --build --preset host_clang
 	cmake --build --preset host_clang --target install
 
-	title_2 "Clang Format"
+	header2 "Clang Format"
 	cmake --build --preset host_gcc --target clang-format-check
 
-	title_2 "Code Linter"
+	header2 "Code Linter"
 	cmake --preset code_linter
 	cmake --build --preset code_linter
 
@@ -47,61 +94,28 @@ build_app_template_app_cmake() {
 }
 
 build_app_template_app_conan_cmake() {
-	title_1 "Build Application Template Conan CMake"
+	header1 "Build Application Template Conan CMake"
 
 	cd application/template/app_conan_cmake
 	rm -rf build/
 
-	title_2 "ARM GCC"
-	conan build . -pr stm32f
-
-	title_2 "Host GCC"
+	header2 "Host GCC"
 	conan build . -pr gcc
 
-	title_2 "Host Clang"
+	header2 "Host Clang"
 	conan build . -pr clang
 
-	title_2 "Clang Format"
-	cmake --build --preset conan-minsizerel --target clang-format-check
+	# header2 "ARM GCC"
+	# conan build . -pr stm32f
 
-	cd -
-}
-
-build_lib_template_lib_conan_cmake_timer_sw() {
-	title_1 "Build Library Template Conan CMake Timer SW"
-
-	cd library/template/lib_conan_cmake/timer_sw
-	rm -rf test_package/build/
-
-	title_2 "GCC"
-	conan create . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc
-
-	title_2 "GCC MinSizeRel"
-	conan create . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc -s build_type=MinSizeRel
-
-	title_2 "Conan cache list"
-	conan list timer_sw/*:*
-
-	cd -
-}
-
-build_lib_template_lib_conan_cmake_dlt() {
-	title_1 "Build Library Template Conan CMake DLT"
-
-	cd library/template/lib_conan_cmake/dlt
-	rm -rf test_package/build/
-
-	title_2 "GCC MinSizeRel"
-	conan create . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc -s build_type=MinSizeRel
-
-	title_2 "Conan cache list"
-	conan list dlt/*:*
+	header2 "Clang Format"
+	cmake --build --preset conan-release --target clang-format-check
 
 	cd -
 }
 
 run_clang_tidy() {
-	title_1 "Run Clang Tidy"
+	header1 "Run Clang Tidy"
 
 	cd application/template/app_conan_cmake
 
@@ -115,28 +129,32 @@ run_clang_tidy() {
 	cd -
 }
 
-info() {
-	echo -e "$1"
+conan_cache_clean_all() {
+	header2 "Clean Conan local cache"
+	conan cache clean "*" --source --build --temp --download
+	conan remove -c "*"
 }
 
-title_1() {
-	echo -e "\n## $1"
-}
+conan_create_template_library() {
+	header2 "GCC"
+	conan create . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc
 
-title_2() {
-	echo -e "\n### $1"
-}
+	header2 "GCC MinSizeRel"
+	conan create . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc -s build_type=MinSizeRel
 
-error() {
-	RED='\033[0;41;30m'
-	STD='\033[0;0;39m'
-	echo -e "ERROR: ${RED}$1${STD}\n"
-	exit 1
+	header2 "Host Clang"
+	conan create . -pr clang
+
+	# header2 "ARM GCC"
+	# conan create . -pr stm32f
+
+	header2 "Conan cache list"
+	conan list "$1"/*:*
 }
 
 #--- Main
 
 (
 	time main
-	echo -e "\n## CI/CD Done\n"
-) 2>&1 | tee logs/ci_cd_manual.md # redirect stdout/stderr to a file
+	header1 "${script_title}" "completed"
+) 2>&1 | tee logs/"${log_filename}".md # redirect stdout/stderr to a file

@@ -16,30 +16,16 @@ class DLTRecipe(ConanFile):
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": False, "fPIC": True}
+    options = {"shared": [False]}
+    default_options = {"shared": False}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "source/*", "include/*"
 
     generators = "CMakeDeps", "CMakeToolchain"
 
-    def config_options(self):
-        if self.settings.os == "Windows":
-            self.options.rm_safe("fPIC")
-
-    def configure(self):
-        if self.options.shared:
-            self.options.rm_safe("fPIC")
-
     def layout(self):
         cmake_layout(self)
-
-    # def generate(self):
-    #     deps = CMakeDeps(self)
-    #     deps.generate()
-    #     tc = CMakeToolchain(self)
-    #     tc.generate()
 
     def build(self):
         cmake = CMake(self)
