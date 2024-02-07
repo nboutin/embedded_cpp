@@ -14,6 +14,7 @@ main() {
 
 	lib_timer_sw
 	lib_dlt
+	app_conan_cmake
 
 	title_1 "Conan list"
 	conan list "*" -r=local
@@ -45,6 +46,18 @@ lib_dlt() {
 
 	title_2 "Conan upload"
 	conan upload dlt -r=local
+
+	cd -
+}
+
+app_conan_cmake() {
+	title_1 "Application Conan CMake"
+	conan_cache_clean_all
+	cd application/template/app_conan_cmake
+
+	title_2 "Conan build"
+	rm -rf build
+	conan build . -c tools.cmake.cmaketoolchain:generator=Ninja -pr:h gcc -s build_type=MinSizeRel
 
 	cd -
 }

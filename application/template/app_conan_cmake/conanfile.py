@@ -12,7 +12,8 @@ class app_conan_cmake(ConanFile):
         pass
 
     def requirements(self):
-        pass
+        self.requires("dlt/[~0.1]")
+        self.requires("timer_sw/[~0.1]")
 
     def layout(self):
         cmake_layout(self)
