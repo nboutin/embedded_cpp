@@ -3,6 +3,9 @@
 # On error, exit immediately
 set -e
 
-conan config install settings_user.yml
-conan config install -sf profiles -tf profiles .
-conan config install -sf ../cmake/toolchain -tf profiles/cmake_toolchain .
+script_path="$(realpath "${BASH_SOURCE[0]}")" # Get the full path of the script
+current_dir="$(dirname "$script_path")"       # Extract the directory part of the path
+
+conan config install "${current_dir}"/settings_user.yml
+conan config install -sf "${current_dir}"/profiles -tf profiles .
+conan config install -sf "${current_dir}"/../cmake/toolchain -tf profiles/cmake_toolchain .
