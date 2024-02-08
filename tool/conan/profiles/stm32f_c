@@ -1,0 +1,23 @@
+{% set cpu = "cortex-m4" %}
+{% set float_abi = "hard" %}
+{% set fpu = "auto" %}
+
+[settings]
+compiler=gcc
+compiler.cppstd=20
+compiler.libcxx=libstdc++
+compiler.version=12.2
+build_type=Release
+os=baremetal
+arch=thumbv7
+arch.float_abi={{ float_abi }}
+arch.fpu={{ fpu }}
+arch.processor={{ cpu }}
+
+[tool_requires]
+arm-gnu-toolchain/12.2.1#8d6c7a2e49b05790f0cf890398cfe760
+
+[conf]
+tools.build:cflags=["-mfloat-abi={{ float_abi }}", "-mcpu={{ cpu }}", "-mfpu={{ fpu }}", "-mthumb", "-ffunction-sections", "-fdata-sections"]
+tools.build:cxxflags=["-mfloat-abi={{ float_abi }}", "-mcpu={{ cpu }}", "-mfpu={{ fpu }}", "-fno-exceptions", "-fno-rtti", "-mthumb", "-ffunction-sections", "-fdata-sections"]
+tools.build:exelinkflags=["--specs=nano.specs", "--specs=nosys.specs", "--specs=picolibc.specs", "-mfloat-abi={{ float_abi }}", "-mcpu={{ cpu }}", "-mfpu={{ fpu }}", "-fno-exceptions", "-fno-rtti", "-mthumb", "-ffunction-sections", "-fdata-sections"]
