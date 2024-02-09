@@ -3,6 +3,7 @@
 ## Must have
 
 - Cross compile library with conan : [github issue](https://github.com/conan-io/conan/issues/7759)
+- https://github.com/conan-io/conan/issues/13533
 - Add GoogleTest GoogleMock Cutie
 - Use sanitizer compiler options for Tests
 - Use CTest
